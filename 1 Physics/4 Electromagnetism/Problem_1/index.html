@@ -72,6 +72,28 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#problem-simulating-the-effects-of-the-lorentz-force">⚛️ Problem: Simulating the Effects of the Lorentz Force</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">🧲 Motivation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#project-tasks">🔬 Project Tasks</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-exploration-of-applications">1. Exploration of Applications</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-simulating-particle-motion">2. Simulating Particle Motion</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-parameter-exploration">3. Parameter Exploration</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-visualization">4. Visualization</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#suggested-tools">💻 Suggested Tools</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#deliverables">📤 Deliverables</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +194,84 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<hr/>
+<h2 id="problem-simulating-the-effects-of-the-lorentz-force">⚛️ Problem: Simulating the Effects of the Lorentz Force</h2>
+<h3 id="motivation">🧲 Motivation</h3>
+<p>The Lorentz force:</p>
+<div class="arithmatex">\[
+\vec{F} = q(\vec{E} + \vec{v} \times \vec{B})
+\]</div>
+<p>governs charged particle motion in electric and magnetic fields. Simulating this helps visualize behavior in devices like cyclotrons, mass spectrometers, and magnetic traps.</p>
+<hr/>
+<h2 id="project-tasks">🔬 Project Tasks</h2>
+<h3 id="1-exploration-of-applications">1. <strong>Exploration of Applications</strong></h3>
+<ul>
+<li>Particle accelerators, fusion devices, astrophysics</li>
+<li>Understand the roles of electric (<span class="arithmatex">\(\vec{E}\)</span>) and magnetic (<span class="arithmatex">\(\vec{B}\)</span>) fields</li>
+</ul>
+<h3 id="2-simulating-particle-motion">2. <strong>Simulating Particle Motion</strong></h3>
+<ul>
+<li>
+<p>Scenarios:</p>
+</li>
+<li>
+<p>Uniform magnetic field</p>
+</li>
+<li>Uniform electric field</li>
+<li>Crossed <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span> fields</li>
+<li>
+<p>Solve Newton's second law using:</p>
+</li>
+<li>
+<p>Euler or Runge-Kutta methods</p>
+</li>
+</ul>
+<h3 id="3-parameter-exploration">3. <strong>Parameter Exploration</strong></h3>
+<ul>
+<li>
+<p>Vary:</p>
+</li>
+<li>
+<p>Field strengths</p>
+</li>
+<li>Initial velocity</li>
+<li>Charge-to-mass ratio (<span class="arithmatex">\(q/m\)</span>)</li>
+<li>Observe effects on path shape, radius, and drift</li>
+</ul>
+<h3 id="4-visualization">4. <strong>Visualization</strong></h3>
+<ul>
+<li>2D/3D trajectory plots</li>
+<li>
+<p>Identify:</p>
+</li>
+<li>
+<p>Circular motion (Larmor radius)</p>
+</li>
+<li>Helical paths</li>
+<li>E×B drift</li>
+</ul>
+<hr/>
+<h2 id="suggested-tools">💻 Suggested Tools</h2>
+<ul>
+<li><code>numpy</code>: Numerical calculations</li>
+<li><code>matplotlib</code>: Plotting</li>
+<li><code>scipy.integrate.solve_ivp</code>: RK solver for motion</li>
+</ul>
+<hr/>
+<h2 id="deliverables">📤 Deliverables</h2>
+<ul>
+<li>
+<p>Markdown or Jupyter Notebook with:</p>
+</li>
+<li>
+<p>Code</p>
+</li>
+<li>Simulated paths</li>
+<li>Visuals of field configurations</li>
+<li>Discussion on real-world applications</li>
+<li>Optional: Extend to non-uniform fields or relativistic corrections</li>
+</ul>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
