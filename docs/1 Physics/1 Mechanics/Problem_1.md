@@ -126,4 +126,4 @@ The graphs will show:
 
 ---
 
-Would you like me to prepare this as a Jupyter Notebook or help you expand the Python simulation (e.g., include air resistance or uneven terrain)?
+
