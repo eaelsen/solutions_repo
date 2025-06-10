@@ -56,6 +56,38 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#problem-1-orbital-period-and-orbital-radius">🌍 Problem 1: Orbital Period and Orbital Radius</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">🚀 Motivation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. 📘 Theoretical Foundation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#newtons-law-of-gravitation">Newton’s Law of Gravitation:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#centripetal-force-for-circular-motion">Centripetal Force for Circular Motion:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#final-form-of-keplers-third-law">Final Form of Kepler's Third Law:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-implications-for-astronomy">2. 🧠 Implications for Astronomy</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-real-world-examples">3. 🌍 Real-World Examples</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-1-the-moon-around-earth">Example 1: The Moon around Earth</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#example-2-planets-in-the-solar-system">Example 2: Planets in the Solar System</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-python-simulation-and-verification">4. 💻 Python Simulation and Verification</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#visualization">📈 Visualization</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#beyond-circular-orbits">📉 Beyond Circular Orbits</a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
@@ -172,6 +204,107 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<hr/>
+<h2 id="problem-1-orbital-period-and-orbital-radius">🌍 Problem 1: Orbital Period and Orbital Radius</h2>
+<h3 id="motivation">🚀 Motivation</h3>
+<p>Kepler’s Third Law reveals a deep connection between time and space in orbital mechanics: the square of a planet's orbital period is proportional to the cube of its orbital radius. This law forms a bridge between observation and Newtonian gravitation, enabling predictions of satellite behavior, moon motion, and planetary distances.</p>
+<hr/>
+<h2 id="1-theoretical-foundation">1. 📘 Theoretical Foundation</h2>
+<h3 id="newtons-law-of-gravitation">Newton’s Law of Gravitation:</h3>
+<div class="arithmatex">\[
+F = \frac{GMm}{r^2}
+\]</div>
+<h3 id="centripetal-force-for-circular-motion">Centripetal Force for Circular Motion:</h3>
+<div class="arithmatex">\[
+F = \frac{mv^2}{r}
+\]</div>
+<p>Equating the two:</p>
+<div class="arithmatex">\[
+\frac{GMm}{r^2} = \frac{mv^2}{r}
+\]</div>
+<div class="arithmatex">\[
+v = \sqrt{\frac{GM}{r}}
+\]</div>
+<p>Period <span class="arithmatex">\(T\)</span> is the time to complete one orbit:</p>
+<div class="arithmatex">\[
+T = \frac{2\pi r}{v} = 2\pi r \sqrt{\frac{r}{GM}} = 2\pi \sqrt{\frac{r^3}{GM}}
+\]</div>
+<h3 id="final-form-of-keplers-third-law">Final Form of Kepler's Third Law:</h3>
+<div class="arithmatex">\[
+T^2 \propto r^3
+\]</div>
+<hr/>
+<h2 id="2-implications-for-astronomy">2. 🧠 Implications for Astronomy</h2>
+<ul>
+<li>Allows estimation of <strong>planetary masses</strong> and <strong>orbital distances</strong>.</li>
+<li>Explains consistent behavior across moons, planets, and satellites.</li>
+<li>Groundwork for Newton’s universal law of gravitation.</li>
+</ul>
+<hr/>
+<h2 id="3-real-world-examples">3. 🌍 Real-World Examples</h2>
+<h3 id="example-1-the-moon-around-earth">Example 1: The Moon around Earth</h3>
+<ul>
+<li>Radius: <span class="arithmatex">\(r \approx 384,400\)</span> km</li>
+<li>Period: <span class="arithmatex">\(T \approx 27.3\)</span> days</li>
+<li>Use to verify <span class="arithmatex">\(T^2 \propto r^3\)</span></li>
+</ul>
+<h3 id="example-2-planets-in-the-solar-system">Example 2: Planets in the Solar System</h3>
+<p>Compare <span class="arithmatex">\(\frac{T^2}{r^3}\)</span> across planets—should be nearly constant.</p>
+<hr/>
+<h2 id="4-python-simulation-and-verification">4. 💻 Python Simulation and Verification</h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G = 6.67430e-11  # gravitational constant (m^3/kg/s^2)
+M = 1.989e30     # mass of the Sun (kg)
+
+# Orbital radii (m) and periods (s) of planets
+planet_data = {
+    'Mercury': (5.79e10, 7.60e6),
+    'Venus': (1.08e11, 1.94e7),
+    'Earth': (1.50e11, 3.15e7),
+    'Mars': (2.28e11, 5.94e7),
+    'Jupiter': (7.78e11, 3.74e8),
+    'Saturn': (1.43e12, 9.29e8)
+}
+
+# Calculate T^2 and R^3
+radii = []
+t_squared = []
+r_cubed = []
+
+for planet, (r, T) in planet_data.items():
+    radii.append(r)
+    t_squared.append(T**2)
+    r_cubed.append(r**3)
+
+# Plot
+plt.figure(figsize=(8, 6))
+plt.loglog(r_cubed, t_squared, 'o-')
+plt.xlabel("Orbital Radius³ (m³)")
+plt.ylabel("Orbital Period² (s²)")
+plt.title("Verification of Kepler's Third Law")
+plt.grid(True)
+plt.show()
+</code></pre>
+<hr/>
+<h2 id="visualization">📈 Visualization</h2>
+<ul>
+<li>Log-log plot of <span class="arithmatex">\(T^2\)</span> vs <span class="arithmatex">\(r^3\)</span> should yield a straight line.</li>
+<li>Confirms that <span class="arithmatex">\(T^2 \propto r^3\)</span> for all major planets.</li>
+</ul>
+<hr/>
+<h2 id="beyond-circular-orbits">📉 Beyond Circular Orbits</h2>
+<ul>
+<li>For elliptical orbits, Kepler’s Third Law still holds with:</li>
+</ul>
+<p>$$
+  T^2 = \frac{4\pi^2 a^3}{GM}
+  $$</p>
+<p>where <span class="arithmatex">\(a\)</span> is the semi-major axis.
+* Used in binary star systems, exoplanets, and orbital transfer calculations.</p>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
