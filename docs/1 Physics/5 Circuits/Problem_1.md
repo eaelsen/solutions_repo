@@ -12,6 +12,7 @@ Graph theory provides a powerful way to model and solve complex resistor network
 
 ---
 
+(/docs/1%20Physics/5%20Circuits/img/output%20(2).png)
 ## 🧠 Task Options
 
 ### **Option 1 – Simplified Task (Algorithm Description)**
