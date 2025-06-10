@@ -92,6 +92,22 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#project-measuring-earths-gravitational-acceleration-with-a-pendulum">🌍 Project: Measuring Earth's Gravitational Acceleration with a Pendulum</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">🎯 Motivation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#materials">🛠 Materials</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#experimental-steps">🔬 Experimental Steps</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#uncertainty-propagation">🧮 Uncertainty Propagation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#analysis">📊 Analysis</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#deliverables">✅ Deliverables</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +188,69 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<hr/>
+<h2 id="project-measuring-earths-gravitational-acceleration-with-a-pendulum">🌍 Project: Measuring Earth's Gravitational Acceleration with a Pendulum</h2>
+<h3 id="motivation">🎯 Motivation</h3>
+<p>Gravitational acceleration <span class="arithmatex">\(g\)</span> is fundamental in physics. Using a simple pendulum, we can estimate <span class="arithmatex">\(g\)</span> experimentally and analyze measurement uncertainties to understand data accuracy and limitations.</p>
+<hr/>
+<h2 id="materials">🛠 Materials</h2>
+<ul>
+<li>String (\~1 or 1.5 m)</li>
+<li>Small weight (e.g., keychain, coins)</li>
+<li>Ruler or measuring tape</li>
+<li>Stopwatch or timer (phone works too)</li>
+</ul>
+<hr/>
+<h2 id="experimental-steps">🔬 Experimental Steps</h2>
+<ol>
+<li><strong>Measure Pendulum Length</strong> <span class="arithmatex">\(L\)</span> from pivot to center of mass.</li>
+<li><strong>Measure 10 full oscillations</strong> (repeat 10 times for averaging).</li>
+<li>
+<p>Calculate:</p>
+</li>
+<li>
+<p>Mean time <span class="arithmatex">\(\overline{T_{10}}\)</span></p>
+</li>
+<li>Uncertainty <span class="arithmatex">\(\Delta T_{10} = \frac{\sigma_T}{\sqrt{n}}\)</span></li>
+<li>
+<p>Determine:</p>
+</li>
+<li>
+<p>Period <span class="arithmatex">\(T = \frac{\overline{T_{10}}}{10}\)</span></p>
+</li>
+<li>Gravitational acceleration: <span class="arithmatex">\(g = \frac{4\pi^2 L}{T^2}\)</span></li>
+</ol>
+<hr/>
+<h2 id="uncertainty-propagation">🧮 Uncertainty Propagation</h2>
+<div class="arithmatex">\[
+\Delta g = g \sqrt{\left(\frac{\Delta L}{L}\right)^2 + \left(2 \frac{\Delta T}{T}\right)^2}
+\]</div>
+<hr/>
+<h2 id="analysis">📊 Analysis</h2>
+<ul>
+<li>Compare your result to <span class="arithmatex">\(g = 9.81\, \text{m/s}^2\)</span></li>
+<li>
+<p>Discuss:</p>
+</li>
+<li>
+<p>Effects of measurement tool resolution</p>
+</li>
+<li>Manual timing errors</li>
+<li>Possible experimental assumptions or biases</li>
+</ul>
+<hr/>
+<h2 id="deliverables">✅ Deliverables</h2>
+<ul>
+<li>
+<p>Markdown table with:</p>
+</li>
+<li>
+<p><span class="arithmatex">\(L, \Delta L, T_{10}, \sigma_T, \overline{T_{10}}, \Delta T\)</span></p>
+</li>
+<li>Calculated values of <span class="arithmatex">\(g\)</span> and <span class="arithmatex">\(\Delta g\)</span></li>
+<li>Written analysis of error sources and conclusions</li>
+</ul>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
