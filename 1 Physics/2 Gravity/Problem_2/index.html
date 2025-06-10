@@ -58,6 +58,26 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#problem-2-escape-velocities-and-cosmic-velocities">🚀 Problem 2: Escape Velocities and Cosmic Velocities</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">🔭 Motivation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#1-definitions-and-physical-meaning">1. 📘 Definitions and Physical Meaning</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-derivations">2. 🧮 Derivations</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-example-earth-mars-jupiter">3. 🌍 Example: Earth, Mars, Jupiter</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-python-simulation">4. 💻 Python Simulation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#visualization">📈 Visualization</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#importance-in-space-exploration">🌌 Importance in Space Exploration</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#extensions">🔁 Extensions</a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_3/">Problem 3</a>
@@ -172,6 +192,132 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<hr/>
+<h2 id="problem-2-escape-velocities-and-cosmic-velocities">🚀 Problem 2: Escape Velocities and Cosmic Velocities</h2>
+<h3 id="motivation">🔭 Motivation</h3>
+<p>Escape and cosmic velocities determine the energy required for a spacecraft to orbit Earth, break free from Earth's gravity, or leave the Solar System. These concepts are fundamental to modern astronautics, including satellite launches, Mars missions, and future interstellar travel.</p>
+<hr/>
+<h2 id="1-definitions-and-physical-meaning">1. 📘 Definitions and Physical Meaning</h2>
+<ul>
+<li><strong>First Cosmic Velocity (v₁):</strong> Minimum velocity required to maintain a circular orbit around a planet (orbital speed).</li>
+</ul>
+<p>$$
+  v_1 = \sqrt{\frac{GM}{R}}
+  $$</p>
+<ul>
+<li><strong>Second Cosmic Velocity (v₂):</strong> Minimum velocity to escape the gravitational field of a celestial body (escape velocity).</li>
+</ul>
+<p>$$
+  v_2 = \sqrt{2} \cdot v_1 = \sqrt{\frac{2GM}{R}}
+  $$</p>
+<ul>
+<li><strong>Third Cosmic Velocity (v₃):</strong> Minimum velocity required to escape the Solar System from Earth's orbit (relative to the Sun).</li>
+</ul>
+<p>$$
+  v_3 = \sqrt{\frac{2GM_{\text{sun}}}{R_{\text{earth-orbit}}}} \approx 42.1\,\text{km/s}
+  $$</p>
+<hr/>
+<h2 id="2-derivations">2. 🧮 Derivations</h2>
+<p>Derived from <strong>conservation of energy</strong>:</p>
+<ul>
+<li>Kinetic energy vs. gravitational potential energy</li>
+<li>Escape when total mechanical energy ≥ 0</li>
+</ul>
+<div class="arithmatex">\[
+\frac{1}{2}mv^2 = \frac{GMm}{R}
+\]</div>
+<hr/>
+<h2 id="3-example-earth-mars-jupiter">3. 🌍 Example: Earth, Mars, Jupiter</h2>
+<table>
+<thead>
+<tr>
+<th>Planet</th>
+<th>Radius (m)</th>
+<th>Mass (kg)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Earth</td>
+<td>6.371 × 10⁶</td>
+<td>5.972 × 10²⁴</td>
+</tr>
+<tr>
+<td>Mars</td>
+<td>3.390 × 10⁶</td>
+<td>6.417 × 10²³</td>
+</tr>
+<tr>
+<td>Jupiter</td>
+<td>6.9911 × 10⁷</td>
+<td>1.898 × 10²⁷</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="4-python-simulation">4. 💻 Python Simulation</h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G = 6.67430e-11  # m³/kg/s²
+
+# Celestial body data
+bodies = {
+    "Earth": {"R": 6.371e6, "M": 5.972e24},
+    "Mars": {"R": 3.390e6, "M": 6.417e23},
+    "Jupiter": {"R": 6.9911e7, "M": 1.898e27}
+}
+
+# Calculate cosmic velocities
+results = {}
+for body, data in bodies.items():
+    R = data["R"]
+    M = data["M"]
+    v1 = np.sqrt(G * M / R)
+    v2 = np.sqrt(2) * v1
+    results[body] = {"v1": v1, "v2": v2}
+
+# Plotting
+labels = list(results.keys())
+v1_values = [results[b]["v1"] / 1000 for b in labels]  # in km/s
+v2_values = [results[b]["v2"] / 1000 for b in labels]
+
+x = np.arange(len(labels))
+width = 0.35
+
+plt.figure(figsize=(10, 6))
+plt.bar(x - width/2, v1_values, width, label='1st Cosmic Velocity')
+plt.bar(x + width/2, v2_values, width, label='2nd Cosmic Velocity')
+
+plt.xticks(x, labels)
+plt.ylabel("Velocity (km/s)")
+plt.title("Cosmic Velocities for Earth, Mars, Jupiter")
+plt.legend()
+plt.grid(True)
+plt.show()
+</code></pre>
+<hr/>
+<h2 id="visualization">📈 Visualization</h2>
+<ul>
+<li>Bar chart comparing first and second cosmic velocities.</li>
+<li>Demonstrates how planetary mass and radius influence escape speed.</li>
+</ul>
+<hr/>
+<h2 id="importance-in-space-exploration">🌌 Importance in Space Exploration</h2>
+<ul>
+<li><strong>1st Cosmic Velocity</strong>: Launching satellites into stable orbits.</li>
+<li><strong>2nd Cosmic Velocity</strong>: Interplanetary missions (e.g., Mars rover).</li>
+<li><strong>3rd Cosmic Velocity</strong>: Escape Solar System (e.g., Voyager 1/2).</li>
+</ul>
+<hr/>
+<h2 id="extensions">🔁 Extensions</h2>
+<ul>
+<li>Include atmospheric drag for realistic models.</li>
+<li>Account for rotation (reduces required launch speed at equator).</li>
+<li>Compare with <strong>rocket equation</strong>: <span class="arithmatex">\(\Delta v = v_e \ln(m_0/m_f)\)</span></li>
+</ul>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
