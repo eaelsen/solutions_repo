@@ -6,6 +6,8 @@
 # 🌊 **Interference Patterns on a Water Surface from Multiple Sources**
 
 ---
+![Interference Pattern](./img/output%20(4).png)
+
 
 ## 🎯 **Motivation**
 
@@ -24,7 +26,7 @@ Studying interference patterns on water gives learners an intuitive and visual g
 * Real-world applications, such as acoustics, optics, antenna arrays, and sonar systems
 
 This project allows for a **hands-on and visual approach** to understanding wave behavior, combining analytical theory with numerical simulations and beautiful graphics.
-![Interference Pattern](interference_pattern.png)
+
 
 ---
 
