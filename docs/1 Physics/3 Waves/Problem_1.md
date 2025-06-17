@@ -29,6 +29,8 @@ This project allows for a **hands-on and visual approach** to understanding wave
 
 
 ---
+![Interference Pattern](img/interference.png)
+
 
 ## 🌐 **Wave from a Single Point Source**
 
