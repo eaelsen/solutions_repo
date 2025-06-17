@@ -6,8 +6,11 @@
 *A blend of geometry, probability, and simulation to approximate a mathematical constant.*
 
 ---
-### 📊 Visual 2 – Sample Size = 5 (Exponential Population)
-![CLT Histogram – n = 5](img/statistic2.png)
+
+### 📊 Visual 2 – Sample Size = 5 (Exponential Distribution)
+![CLT Histogram – n = 5](img/statistics2.png)
+
+
 
 
 
@@ -30,10 +33,9 @@ Two famous Monte Carlo methods to estimate π are:
 Both methods rely on randomness and geometric probability but approach the estimation in different ways.
 
 ---
-### 📊 Visual 3 – Sample Size = 30 (Exponential Population)
-![CLT Histogram – n = 30](img/statistic3.png)
 
-
+### 📊 Visual 3 – Sample Size = 30 (Exponential Distribution)
+![CLT Histogram – n = 30](img/statistics3.png)
 
 ## 🧮 Part 1: Circle in a Square Method
 
