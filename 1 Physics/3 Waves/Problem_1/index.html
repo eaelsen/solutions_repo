@@ -66,22 +66,6 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#interference-patterns-on-a-water-surface">🌊 Interference Patterns on a Water Surface</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#goal">🎯 Goal</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#wave-equation-for-a-single-source">🧮 Wave Equation for a Single Source</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#superposition-of-multiple-sources">🔄 Superposition of Multiple Sources</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#project-steps">🧪 Project Steps</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#python-implementation-concept">💻 Python Implementation Concept</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#deliverables">📈 Deliverables</a>
-</li>
 </ul>
 </li>
 </ul>
@@ -189,80 +173,131 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
 <hr/>
-<h2 id="interference-patterns-on-a-water-surface">🌊 Interference Patterns on a Water Surface</h2>
-<h3 id="goal">🎯 Goal</h3>
-<p>To analyze how water surface interference patterns form when waves from multiple point sources (e.g., placed at the vertices of a regular polygon) overlap. The project explores constructive and destructive interference through superposition.</p>
+<h1 id="interference-patterns-on-a-water-surface-from-multiple-sources">🌊 <strong>Interference Patterns on a Water Surface from Multiple Sources</strong></h1>
 <hr/>
-<h2 id="wave-equation-for-a-single-source">🧮 Wave Equation for a Single Source</h2>
+<h2 id="motivation">🎯 <strong>Motivation</strong></h2>
+<p>Interference is a core concept in wave physics and occurs when two or more waves meet, resulting in a new wave pattern. These interactions can either:</p>
+<ul>
+<li><strong>Constructively interfere</strong> (amplify the wave)</li>
+<li><strong>Destructively interfere</strong> (cancel out)</li>
+</ul>
+<p>On a <strong>water surface</strong>, this is beautifully visualized through <strong>ripple patterns</strong> created when multiple point sources generate waves simultaneously. These ripples overlap and form <strong>interference fringes</strong>—regions of constructive and destructive interference—that resemble intricate patterns.</p>
+<p>Studying interference patterns on water gives learners an intuitive and visual grasp of:</p>
+<ul>
+<li>Superposition of waves</li>
+<li>Coherence and phase</li>
+<li>Wave geometry and symmetry</li>
+<li>Real-world applications, such as acoustics, optics, antenna arrays, and sonar systems</li>
+</ul>
+<p>This project allows for a <strong>hands-on and visual approach</strong> to understanding wave behavior, combining analytical theory with numerical simulations and beautiful graphics.</p>
+<hr/>
+<h2 id="wave-from-a-single-point-source">🌐 <strong>Wave from a Single Point Source</strong></h2>
+<p>The displacement of the water surface <span class="arithmatex">\(\eta(x, y, t)\)</span> from a <strong>single point source</strong> located at <span class="arithmatex">\((x_0, y_0)\)</span> is modeled as:</p>
 <div class="arithmatex">\[
-\eta(x, y, t) = \frac{A}{\sqrt{r}} \cos(kr - \omega t + \phi)
+\eta(x, y, t) = \frac{A}{\sqrt{r}} \cos \left(kr - \omega t + \phi\right)
 \]</div>
 <p>Where:</p>
 <ul>
-<li><span class="arithmatex">\(r = \sqrt{(x - x_0)^2 + (y - y_0)^2}\)</span></li>
-<li><span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span>, <span class="arithmatex">\(\omega = 2\pi f\)</span></li>
+<li><span class="arithmatex">\(\eta(x, y, t)\)</span>: Surface displacement at position <span class="arithmatex">\((x, y)\)</span> and time <span class="arithmatex">\(t\)</span></li>
+<li><span class="arithmatex">\(A\)</span>: Amplitude of the wave</li>
+<li><span class="arithmatex">\(r = \sqrt{(x - x_0)^2 + (y - y_0)^2}\)</span>: Distance from source to point</li>
+<li><span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span>: Wave number (related to wavelength <span class="arithmatex">\(\lambda\)</span>)</li>
+<li><span class="arithmatex">\(\omega = 2\pi f\)</span>: Angular frequency (related to frequency <span class="arithmatex">\(f\)</span>)</li>
+<li><span class="arithmatex">\(\phi\)</span>: Initial phase of the wave</li>
 </ul>
 <hr/>
-<h2 id="superposition-of-multiple-sources">🔄 Superposition of Multiple Sources</h2>
+<h2 id="problem-statement">🧩 <strong>Problem Statement</strong></h2>
+<p>The project investigates <strong>interference patterns</strong> created on the water surface by placing <strong>multiple point wave sources</strong> at the vertices of a <strong>regular polygon</strong> (e.g., equilateral triangle, square, pentagon, etc.).</p>
+<p>The aim is to <strong>analyze and visualize the superposition</strong> of these waves and interpret the resulting interference patterns.</p>
+<hr/>
+<h2 id="steps-to-follow">🔁 <strong>Steps to Follow</strong></h2>
+<h3 id="1-choose-a-regular-polygon">🔸 1. <strong>Choose a Regular Polygon</strong></h3>
+<p>Select a geometric shape such as:</p>
+<ul>
+<li>Equilateral triangle (3 sources)</li>
+<li>Square (4 sources)</li>
+<li>Regular pentagon (5 sources)</li>
+<li>Hexagon, heptagon, etc.</li>
+</ul>
+<h3 id="2-place-sources-at-vertices">🔸 2. <strong>Place Sources at Vertices</strong></h3>
+<p>Position point wave sources at each of the polygon’s vertices. Assume:</p>
+<ul>
+<li>Same amplitude <span class="arithmatex">\(A\)</span></li>
+<li>Same wavelength <span class="arithmatex">\(\lambda\)</span></li>
+<li>Same frequency <span class="arithmatex">\(f\)</span></li>
+<li>Possibly the same phase</li>
+</ul>
+<h3 id="3-write-the-individual-wave-equations">🔸 3. <strong>Write the Individual Wave Equations</strong></h3>
+<p>For each source <span class="arithmatex">\(i\)</span>, compute the wave displacement at any point <span class="arithmatex">\((x, y)\)</span> on the water surface:</p>
+<div class="arithmatex">\[
+\eta_i(x, y, t) = \frac{A}{\sqrt{r_i}} \cos(k r_i - \omega t + \phi_i)
+\]</div>
+<p>Where <span class="arithmatex">\(r_i\)</span> is the distance from source <span class="arithmatex">\(i\)</span> to the point <span class="arithmatex">\((x, y)\)</span>.</p>
+<h3 id="4-apply-superposition">🔸 4. <strong>Apply Superposition</strong></h3>
+<p>Total wave displacement at <span class="arithmatex">\((x, y, t)\)</span> is:</p>
 <div class="arithmatex">\[
 \eta_{\text{total}}(x, y, t) = \sum_{i=1}^{N} \eta_i(x, y, t)
 \]</div>
-<p>Sources are placed at polygon vertices (e.g., triangle, square, pentagon).</p>
+<p>Where <span class="arithmatex">\(N\)</span> is the number of sources (vertices of the polygon).</p>
 <hr/>
-<h2 id="project-steps">🧪 Project Steps</h2>
-<ol>
-<li><strong>Choose a Polygon</strong> (e.g., equilateral triangle)</li>
-<li><strong>Position the Sources</strong> at each vertex</li>
-<li><strong>Construct Wave Equations</strong> for each source</li>
-<li><strong>Superpose</strong> to get total displacement</li>
-<li><strong>Visualize</strong> the resulting pattern (at fixed time)</li>
-<li><strong>Analyze</strong> areas of constructive vs destructive interference</li>
-</ol>
-<hr/>
-<h2 id="python-implementation-concept">💻 Python Implementation Concept</h2>
-<p>You can use Python with <code>numpy</code> and <code>matplotlib</code>:</p>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-
-# Parameters
-A = 1
-λ = 1
-k = 2 * np.pi / λ
-f = 1
-ω = 2 * np.pi * f
-t = 0
-
-# Source positions (equilateral triangle for example)
-sources = [(0, 1), (-np.sqrt(3)/2, -0.5), (np.sqrt(3)/2, -0.5)]
-
-# Grid
-x = np.linspace(-3, 3, 500)
-y = np.linspace(-3, 3, 500)
-X, Y = np.meshgrid(x, y)
-eta_total = np.zeros_like(X)
-
-# Superposition
-for x0, y0 in sources:
-    r = np.sqrt((X - x0)**2 + (Y - y0)**2)
-    eta_total += (A / np.sqrt(r + 1e-6)) * np.cos(k * r - ω * t)
-
-# Plot
-plt.figure(figsize=(8, 6))
-plt.contourf(X, Y, eta_total, levels=100, cmap='coolwarm')
-plt.colorbar(label="Wave Displacement")
-plt.title("Interference Pattern on Water Surface")
-plt.xlabel("x")
-plt.ylabel("y")
-plt.axis('equal')
-plt.show()
-</code></pre>
-<hr/>
-<h2 id="deliverables">📈 Deliverables</h2>
+<h2 id="analysis-objectives">🔬 <strong>Analysis Objectives</strong></h2>
+<h3 id="1-interference-analysis">✅ 1. <strong>Interference Analysis</strong></h3>
 <ul>
-<li>📄 Markdown report or Jupyter notebook</li>
-<li>📊 Visuals of wave patterns for different polygons</li>
-<li>🔍 Analysis of interference zones</li>
+<li>Identify regions where waves <strong>amplify</strong> (constructive interference)</li>
+<li>Locate zones of <strong>cancellation</strong> (destructive interference)</li>
+<li>Examine symmetry and repeating patterns</li>
+<li>Study how geometry (polygon type) affects pattern structure</li>
 </ul>
+<h3 id="2-visualization">✅ 2. <strong>Visualization</strong></h3>
+<p>Use graphical tools (like Python’s <code>matplotlib</code>, <code>numpy</code>, or <code>matplotlib.animation</code>) to:</p>
+<ul>
+<li>Plot instantaneous wave patterns at time <span class="arithmatex">\(t\)</span></li>
+<li>Display interference fringes and nodal lines</li>
+<li>Animate the surface to visualize wave propagation dynamically</li>
+</ul>
+<hr/>
+<h2 id="considerations">🔄 <strong>Considerations</strong></h2>
+<ul>
+<li>Assume all sources are <strong>in phase</strong> for symmetric patterns; vary phase to see changes</li>
+<li>Constant amplitude and frequency for simplicity</li>
+<li>Superposition principle is <strong>linear</strong>, valid for small amplitude waves</li>
+<li>The model is 2D and assumes <strong>non-dispersive waves</strong> (wavelength does not vary with frequency)</li>
+</ul>
+<hr/>
+<h2 id="real-world-relevance">🧠 <strong>Real-World Relevance</strong></h2>
+<p>Interference is fundamental to:</p>
+<ul>
+<li>Sonar, radar, and ultrasound</li>
+<li>Laser diffraction</li>
+<li>Optical grating and interference filters</li>
+<li>Engineering (e.g., phased array antennas)</li>
+<li>Quantum interference and wavefunction analysis</li>
+</ul>
+<p>This project provides a foundation for both <strong>classical wave mechanics</strong> and more advanced <strong>wave-based technologies</strong>.</p>
+<hr/>
+<h2 id="deliverables">📦 <strong>Deliverables</strong></h2>
+<ol>
+<li>
+<p><strong>Markdown or Jupyter Notebook</strong></p>
+</li>
+<li>
+<p>Includes theoretical background, polygon setup, and code for superposition and visualization</p>
+</li>
+<li>
+<p><strong>Written Explanation</strong></p>
+</li>
+<li>
+<p>Discussion of wave equations, interference phenomena, geometric configurations, and implications</p>
+</li>
+<li>
+<p><strong>Graphs and Visuals</strong></p>
+</li>
+<li>
+<p>Static images of interference patterns</p>
+</li>
+<li>Animated simulations (optional)</li>
+<li>Comparative visuals for different polygon shapes and phase conditions</li>
+</ol>
 <hr/>
 </div>
 </div><footer>
