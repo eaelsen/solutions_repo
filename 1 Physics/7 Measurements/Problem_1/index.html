@@ -92,22 +92,6 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#project-measuring-earths-gravitational-acceleration-with-a-pendulum">🌍 Project: Measuring Earth's Gravitational Acceleration with a Pendulum</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#motivation">🎯 Motivation</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#materials">🛠 Materials</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#experimental-steps">🔬 Experimental Steps</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#uncertainty-propagation">🧮 Uncertainty Propagation</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#analysis">📊 Analysis</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#deliverables">✅ Deliverables</a>
-</li>
 </ul>
 </li>
 </ul>
@@ -189,67 +173,191 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
 <hr/>
-<h2 id="project-measuring-earths-gravitational-acceleration-with-a-pendulum">🌍 Project: Measuring Earth's Gravitational Acceleration with a Pendulum</h2>
-<h3 id="motivation">🎯 Motivation</h3>
-<p>Gravitational acceleration <span class="arithmatex">\(g\)</span> is fundamental in physics. Using a simple pendulum, we can estimate <span class="arithmatex">\(g\)</span> experimentally and analyze measurement uncertainties to understand data accuracy and limitations.</p>
+<h1 id="measuring-earths-gravitational-acceleration-with-a-pendulum">🌍 <strong>Measuring Earth’s Gravitational Acceleration with a Pendulum</strong></h1>
 <hr/>
-<h2 id="materials">🛠 Materials</h2>
+<h2 id="motivation">🎯 <strong>Motivation</strong></h2>
+<p>The acceleration due to gravity, <span class="arithmatex">\(g\)</span>, is a <strong>fundamental physical constant</strong> with a standard value near Earth's surface of approximately:</p>
+<div class="arithmatex">\[
+g \approx 9.81\ \text{m/s}^2
+\]</div>
+<p>Accurately measuring <span class="arithmatex">\(g\)</span> is crucial for:</p>
 <ul>
-<li>String (\~1 or 1.5 m)</li>
-<li>Small weight (e.g., keychain, coins)</li>
-<li>Ruler or measuring tape</li>
-<li>Stopwatch or timer (phone works too)</li>
+<li>Understanding Newtonian mechanics</li>
+<li>Engineering and structural analysis</li>
+<li>Calibration of physical instruments</li>
+<li>Precision experiments in physics labs</li>
 </ul>
+<p>This experiment uses a <strong>simple pendulum</strong>, a classical system where the period of oscillation depends only on the <strong>length of the pendulum</strong> and <strong>gravitational acceleration</strong>.</p>
+<p>By measuring the time it takes for a pendulum to oscillate, we can experimentally determine the local value of <span class="arithmatex">\(g\)</span>, while also learning how to analyze <strong>uncertainty</strong> and <strong>experimental error</strong>.</p>
 <hr/>
-<h2 id="experimental-steps">🔬 Experimental Steps</h2>
+<h2 id="task-summary">🧪 <strong>Task Summary</strong></h2>
 <ol>
-<li><strong>Measure Pendulum Length</strong> <span class="arithmatex">\(L\)</span> from pivot to center of mass.</li>
-<li><strong>Measure 10 full oscillations</strong> (repeat 10 times for averaging).</li>
+<li><strong>Measure the period</strong> of a simple pendulum.</li>
+<li><strong>Calculate gravitational acceleration</strong> using:</li>
+</ol>
+<p>$$
+   g = \frac{4\pi^2 L}{T^2}
+   $$
+3. <strong>Evaluate experimental uncertainty</strong>, including how measurement tools and procedures affect your result.</p>
+<hr/>
+<h2 id="materials-needed">🧰 Materials Needed</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>String (1–1.5 m)</td>
+<td>Pendulum length</td>
+</tr>
+<tr>
+<td>Small mass (key, washer, coin)</td>
+<td>Weight for pendulum bob</td>
+</tr>
+<tr>
+<td>Stopwatch or smartphone</td>
+<td>Timing 10 oscillations</td>
+</tr>
+<tr>
+<td>Ruler or tape measure</td>
+<td>To measure length <span class="arithmatex">\(L\)</span></td>
+</tr>
+<tr>
+<td>Clamp or support</td>
+<td>To suspend the pendulum</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="setup-procedure">🛠️ Setup Procedure</h2>
+<ol>
 <li>
-<p>Calculate:</p>
+<p><strong>Build the pendulum</strong>:</p>
 </li>
 <li>
-<p>Mean time <span class="arithmatex">\(\overline{T_{10}}\)</span></p>
-</li>
-<li>Uncertainty <span class="arithmatex">\(\Delta T_{10} = \frac{\sigma_T}{\sqrt{n}}\)</span></li>
-<li>
-<p>Determine:</p>
+<p>Tie the mass securely to the string.</p>
 </li>
 <li>
-<p>Period <span class="arithmatex">\(T = \frac{\overline{T_{10}}}{10}\)</span></p>
+<p>Fix the other end of the string to a rigid point (door frame, ring stand, etc.).</p>
 </li>
-<li>Gravitational acceleration: <span class="arithmatex">\(g = \frac{4\pi^2 L}{T^2}\)</span></li>
+<li>
+<p><strong>Measure the length</strong>:</p>
+</li>
+<li>
+<p>Use a ruler/tape to measure from the <strong>pivot point to the center of the mass</strong>.</p>
+</li>
+<li>
+<p>Record the uncertainty:</p>
+<p>$$
+ \Delta L = \frac{\text{ruler resolution}}{2}
+ $$</p>
+</li>
+<li>
+<p><strong>Record timing data</strong>:</p>
+</li>
+<li>
+<p>Pull the pendulum back &lt; 15° (small-angle approximation applies).</p>
+</li>
+<li>Start timing when the pendulum passes the vertical.</li>
+<li>Time <strong>10 full oscillations</strong>.</li>
+<li>Repeat this 10 times for reliability.</li>
 </ol>
 <hr/>
-<h2 id="uncertainty-propagation">🧮 Uncertainty Propagation</h2>
+<h2 id="data-collection-table-example">📊 Data Collection Table Example</h2>
+<table>
+<thead>
+<tr>
+<th>Trial</th>
+<th>Time for 10 Oscillations (<span class="arithmatex">\(T_{10}\)</span>) [s]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>20.12</td>
+</tr>
+<tr>
+<td>2</td>
+<td>20.08</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>10</td>
+<td>20.11</td>
+</tr>
+</tbody>
+</table>
+<p>Then compute:</p>
+<ul>
+<li>Mean time for 10 oscillations: <span class="arithmatex">\(\bar{T}_{10}\)</span></li>
+<li>Period: <span class="arithmatex">\(T = \bar{T}_{10} / 10\)</span></li>
+<li>Standard deviation: <span class="arithmatex">\(\sigma_T\)</span></li>
+<li>Uncertainty in the mean:</li>
+</ul>
+<p>$$
+  \Delta T = \frac{\sigma_T}{\sqrt{n}} \quad (n = 10)
+  $$</p>
+<hr/>
+<h2 id="calculations">🔬 Calculations</h2>
+<h3 id="1-compute-the-period">1. <strong>Compute the Period</strong></h3>
 <div class="arithmatex">\[
-\Delta g = g \sqrt{\left(\frac{\Delta L}{L}\right)^2 + \left(2 \frac{\Delta T}{T}\right)^2}
+T = \frac{\bar{T}_{10}}{10}
+\]</div>
+<h3 id="2-calculate-g">2. <strong>Calculate g</strong></h3>
+<p>Using the simple pendulum formula:</p>
+<div class="arithmatex">\[
+g = \frac{4\pi^2 L}{T^2}
+\]</div>
+<p>Make sure to use consistent units (length in meters, time in seconds).</p>
+<hr/>
+<h3 id="3-uncertainty-propagation">3. <strong>Uncertainty Propagation</strong></h3>
+<p>To account for uncertainty in both <span class="arithmatex">\(L\)</span> and <span class="arithmatex">\(T\)</span>, apply:</p>
+<div class="arithmatex">\[
+\Delta g = g \cdot \sqrt{\left(\frac{\Delta L}{L}\right)^2 + \left(2\frac{\Delta T}{T}\right)^2}
 \]</div>
 <hr/>
-<h2 id="analysis">📊 Analysis</h2>
+<h2 id="analysis">📈 Analysis</h2>
+<h3 id="compare-measured-vs-standard">✅ Compare Measured vs. Standard</h3>
 <ul>
-<li>Compare your result to <span class="arithmatex">\(g = 9.81\, \text{m/s}^2\)</span></li>
-<li>
-<p>Discuss:</p>
-</li>
-<li>
-<p>Effects of measurement tool resolution</p>
-</li>
-<li>Manual timing errors</li>
-<li>Possible experimental assumptions or biases</li>
+<li>Standard value: <span class="arithmatex">\(g = 9.81\ \text{m/s}^2\)</span></li>
+<li>Your result: e.g., <span class="arithmatex">\(g = 9.76 \pm 0.05\ \text{m/s}^2\)</span></li>
+<li>Is the true value within your error bounds?</li>
+</ul>
+<h3 id="discuss-uncertainties">✅ Discuss Uncertainties</h3>
+<ul>
+<li><strong>Length measurement resolution</strong>: smallest unit you can read on the ruler.</li>
+<li><strong>Timing variability</strong>: human reaction time or stopwatch resolution.</li>
+<li><strong>Air resistance and friction</strong>: small but present.</li>
+<li><strong>Small-angle approximation</strong>: only valid if initial displacement &lt; 15°.</li>
 </ul>
 <hr/>
-<h2 id="deliverables">✅ Deliverables</h2>
-<ul>
+<h2 id="deliverables">📦 Deliverables</h2>
+<ol>
 <li>
-<p>Markdown table with:</p>
+<p><strong>Markdown / Lab Report</strong> including:</p>
 </li>
 <li>
-<p><span class="arithmatex">\(L, \Delta L, T_{10}, \sigma_T, \overline{T_{10}}, \Delta T\)</span></p>
+<p>Raw data</p>
 </li>
-<li>Calculated values of <span class="arithmatex">\(g\)</span> and <span class="arithmatex">\(\Delta g\)</span></li>
-<li>Written analysis of error sources and conclusions</li>
-</ul>
+<li>Mean values and standard deviation</li>
+<li>
+<p>Calculations of <span class="arithmatex">\(T\)</span>, <span class="arithmatex">\(g\)</span>, and <span class="arithmatex">\(\Delta g\)</span></p>
+</li>
+<li>
+<p><strong>Discussion</strong> of:</p>
+</li>
+<li>
+<p>Experimental sources of error</p>
+</li>
+<li>Improvements for better accuracy</li>
+<li>Comparison with expected theoretical value</li>
+</ol>
 <hr/>
 </div>
 </div><footer>
