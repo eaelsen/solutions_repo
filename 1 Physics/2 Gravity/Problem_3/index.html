@@ -60,32 +60,6 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 3</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#problem-3-trajectories-of-a-freely-released-payload-near-earth">🌌 Problem 3: Trajectories of a Freely Released Payload Near Earth</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#motivation">🚀 Motivation</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. 📘 Theoretical Foundation</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#orbital-trajectories">Orbital Trajectories:</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#2-simulation-overview">2. 💻 Simulation Overview</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#inputs">Inputs:</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#3-physical-interpretations">3. 🧠 Physical Interpretations</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#4-python-implementation-outline">4. 💻 Python Implementation Outline</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#visualizations">📈 Visualizations</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#insights-and-applications">🧠 Insights and Applications</a>
-</li>
 </ul>
 </li>
 </ul>
@@ -199,105 +173,174 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-3">Problem 3</h1>
 <hr/>
-<h2 id="problem-3-trajectories-of-a-freely-released-payload-near-earth">🌌 Problem 3: Trajectories of a Freely Released Payload Near Earth</h2>
-<h3 id="motivation">🚀 Motivation</h3>
-<p>Understanding the motion of a payload released from a moving spacecraft is critical for mission design—whether for orbit insertion, satellite deployment, or Earth reentry. This problem blends Newtonian gravity, Keplerian orbits, and numerical simulations.</p>
+<h1 id="trajectories-of-a-freely-released-payload-near-earth">🛰️ <strong>Trajectories of a Freely Released Payload Near Earth</strong></h1>
 <hr/>
-<h2 id="1-theoretical-foundation">1. 📘 Theoretical Foundation</h2>
-<h3 id="orbital-trajectories">Orbital Trajectories:</h3>
-<p>Depending on total mechanical energy <span class="arithmatex">\(E\)</span>, a released payload may follow:</p>
+<h2 id="motivation">🌍 <strong>Motivation</strong></h2>
+<p>When a payload is released from a moving spacecraft near Earth, its subsequent <strong>trajectory</strong> depends entirely on its <strong>initial velocity</strong>, <strong>direction</strong>, <strong>altitude</strong>, and the <strong>gravitational pull of Earth</strong>. The motion could lead to a variety of paths:</p>
 <ul>
-<li><strong>Elliptical orbit</strong> (<span class="arithmatex">\(E &lt; 0\)</span>)</li>
-<li><strong>Parabolic escape</strong> (<span class="arithmatex">\(E = 0\)</span>)</li>
-<li><strong>Hyperbolic escape</strong> (<span class="arithmatex">\(E &gt; 0\)</span>)</li>
+<li><strong>Reentry to Earth</strong></li>
+<li><strong>Stable orbit</strong></li>
+<li><strong>Escape from Earth’s gravity</strong></li>
 </ul>
-<p>Use:</p>
+<p>This problem beautifully combines <strong>orbital mechanics</strong> and <strong>computational physics</strong>, making it a rich area of study for students and professionals interested in spaceflight, mission planning, and gravity-dominated motion.</p>
+<p>Understanding these trajectory outcomes is <strong>crucial for</strong>:</p>
+<ul>
+<li>Satellite deployment</li>
+<li>Space station rendezvous</li>
+<li>Space tourism safety</li>
+<li>Planetary reentry</li>
+<li>Interplanetary travel planning</li>
+</ul>
+<hr/>
+<h2 id="theoretical-background">📘 <strong>Theoretical Background</strong></h2>
+<p>To model the trajectory of a payload near Earth, we apply:</p>
+<h3 id="1-newtons-law-of-universal-gravitation">1. <strong>Newton’s Law of Universal Gravitation</strong></h3>
+<div class="arithmatex">\[
+F = \frac{GMm}{r^2}
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(F\)</span>: Gravitational force</li>
+<li><span class="arithmatex">\(G\)</span>: Gravitational constant</li>
+<li><span class="arithmatex">\(M\)</span>: Mass of Earth</li>
+<li><span class="arithmatex">\(m\)</span>: Mass of payload</li>
+<li><span class="arithmatex">\(r\)</span>: Distance from Earth's center to payload</li>
+</ul>
+<hr/>
+<h3 id="2-equation-of-motion">2. <strong>Equation of Motion</strong></h3>
+<p>Using Newton's Second Law:</p>
+<div class="arithmatex">\[
+\vec{F} = m\vec{a} \Rightarrow \vec{a} = -\frac{GM}{r^2} \hat{r}
+\]</div>
+<p>This leads to a <strong>second-order differential equation</strong> for the position <span class="arithmatex">\(\vec{r}(t)\)</span>, which usually requires <strong>numerical integration</strong> (e.g., Runge-Kutta methods) to solve for complex cases.</p>
+<hr/>
+<h3 id="3-energy-and-trajectory-types">3. <strong>Energy and Trajectory Types</strong></h3>
+<p>The total mechanical energy determines the trajectory type:</p>
 <div class="arithmatex">\[
 E = \frac{1}{2}mv^2 - \frac{GMm}{r}
 \]</div>
-<p>And angular momentum conservation to derive trajectory type.</p>
+<p>Based on <span class="arithmatex">\(E\)</span>:</p>
+<ul>
+<li><strong>Elliptical orbit</strong>: <span class="arithmatex">\(E &lt; 0\)</span></li>
+<li><strong>Parabolic trajectory (escape)</strong>: <span class="arithmatex">\(E = 0\)</span></li>
+<li><strong>Hyperbolic trajectory (escape with excess energy)</strong>: <span class="arithmatex">\(E &gt; 0\)</span></li>
+</ul>
 <hr/>
-<h2 id="2-simulation-overview">2. 💻 Simulation Overview</h2>
-<p>We'll simulate the trajectory using Newton's gravitational force:</p>
+<h3 id="4-escape-velocity-revisited">4. <strong>Escape Velocity Revisited</strong></h3>
+<p>To determine if the payload will escape Earth, we calculate:</p>
 <div class="arithmatex">\[
-\vec{F} = -\frac{GMm}{r^3}\vec{r}
+v_{\text{escape}} = \sqrt{\frac{2GM}{r}}
 \]</div>
-<p>Use the <strong>Runge-Kutta</strong> or <strong>Velocity Verlet</strong> method to update:</p>
-<ul>
-<li>Position <span class="arithmatex">\(\vec{r}\)</span></li>
-<li>Velocity <span class="arithmatex">\(\vec{v}\)</span></li>
-</ul>
-<h3 id="inputs">Inputs:</h3>
-<ul>
-<li>Initial position <span class="arithmatex">\(\vec{r}_0\)</span></li>
-<li>Initial velocity <span class="arithmatex">\(\vec{v}_0\)</span></li>
-<li>Altitude, direction, and speed</li>
-</ul>
+<p>If the payload’s speed <span class="arithmatex">\(v &gt; v_{\text{escape}}\)</span>, it <strong>escapes</strong> Earth’s gravity.</p>
 <hr/>
-<h2 id="3-physical-interpretations">3. 🧠 Physical Interpretations</h2>
+<h2 id="tasks-and-analysis">🚀 <strong>Tasks and Analysis</strong></h2>
+<h3 id="1-trajectory-classification">✅ 1. <strong>Trajectory Classification</strong></h3>
+<p>Depending on:</p>
 <ul>
-<li><strong>Orbital Insertion</strong>: Initial <span class="arithmatex">\(v\)</span> &lt; escape velocity, tangential direction.</li>
-<li><strong>Reentry</strong>: Suborbital trajectory intersecting Earth.</li>
-<li><strong>Escape</strong>: <span class="arithmatex">\(v &gt; v_{escape}\)</span>, hyperbolic path.</li>
+<li>Initial speed</li>
+<li>Direction of velocity vector</li>
+<li>Altitude from Earth’s surface</li>
 </ul>
-<hr/>
-<h2 id="4-python-implementation-outline">4. 💻 Python Implementation Outline</h2>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-
-# Constants
-G = 6.67430e-11
-M = 5.972e24  # Earth mass
-R_earth = 6.371e6  # Earth radius
-
-def gravity(r):
-    r_mag = np.linalg.norm(r)
-    return -G * M * r / r_mag**3
-
-# Initial conditions
-altitude = 400e3  # 400 km above surface
-r0 = np.array([R_earth + altitude, 0])
-v0 = np.array([0, 7500])  # initial speed in m/s
-
-# Simulation
-dt = 1  # time step (s)
-t_max = 6000
-steps = int(t_max / dt)
-
-r = np.zeros((steps, 2))
-v = np.zeros((steps, 2))
-r[0], v[0] = r0, v0
-
-for i in range(steps - 1):
-    a = gravity(r[i])
-    v[i+1] = v[i] + a * dt
-    r[i+1] = r[i] + v[i+1] * dt
-
-# Plot trajectory
-plt.figure(figsize=(8, 8))
-earth = plt.Circle((0, 0), R_earth, color='blue', alpha=0.3)
-plt.gca().add_patch(earth)
-plt.plot(r[:, 0], r[:, 1])
-plt.axis('equal')
-plt.title("Payload Trajectory Near Earth")
-plt.xlabel("x (m)")
-plt.ylabel("y (m)")
-plt.grid(True)
-plt.show()
-</code></pre>
-<hr/>
-<h2 id="visualizations">📈 Visualizations</h2>
+<p>The payload may:</p>
 <ul>
-<li>Orbit trajectory (2D path)</li>
-<li>Overlay Earth as a circle</li>
-<li>Show variations for different velocities: orbital, suborbital, escape</li>
+<li><strong>Fall back</strong> to Earth (suborbital)</li>
+<li><strong>Enter a circular or elliptical orbit</strong></li>
+<li><strong>Escape</strong> Earth (if <span class="arithmatex">\(v \geq v_{\text{escape}}\)</span>)</li>
+<li><strong>Reenter</strong> in a ballistic trajectory</li>
+</ul>
+<h3 id="2-numerical-simulation">✅ 2. <strong>Numerical Simulation</strong></h3>
+<p>Using Newtonian mechanics and a numerical integrator (e.g., Runge-Kutta 4th order), simulate the payload's path in 2D (or 3D) space. Vary:</p>
+<ul>
+<li>Launch angle</li>
+<li>Initial velocity</li>
+<li>Altitude</li>
+</ul>
+<p>Plot position over time to visualize the resulting path.</p>
+<h3 id="3-orbital-insertion-and-reentry-conditions">✅ 3. <strong>Orbital Insertion and Reentry Conditions</strong></h3>
+<p>Determine:</p>
+<ul>
+<li>What minimum velocity at what altitude yields a stable orbit</li>
+<li>What trajectories lead to <strong>reentry</strong> within one or multiple revolutions</li>
+<li>What speeds and directions ensure <strong>safe deployment</strong> or intentional deorbiting</li>
 </ul>
 <hr/>
-<h2 id="insights-and-applications">🧠 Insights and Applications</h2>
+<h2 id="practical-applications">🛰️ <strong>Practical Applications</strong></h2>
 <ul>
-<li>Simulate <strong>satellite deployment</strong></li>
-<li>Predict <strong>crash or reentry</strong> scenarios</li>
-<li>Model <strong>escape trajectories</strong> for Moon or Mars missions</li>
+<li><strong>Satellite Launches</strong>: Ensuring correct velocity and direction for orbit insertion</li>
+<li><strong>Spacecraft Reentry</strong>: Predicting where and when reentry occurs for safety</li>
+<li><strong>Lunar Missions</strong>: Calculating Earth departure conditions</li>
+<li><strong>Debris Management</strong>: Simulating where discarded stages will fall or orbit</li>
+</ul>
+<hr/>
+<h2 id="simulation-visualization">📐 <strong>Simulation &amp; Visualization</strong></h2>
+<p>Suggested simulation features:</p>
+<ul>
+<li>Simulate motion in Earth’s gravity from different altitudes (e.g., 100 km to 1000 km)</li>
+<li>
+<p>Show:</p>
+</li>
+<li>
+<p>Circular orbits</p>
+</li>
+<li>Escape trajectories</li>
+<li>Reentry arcs</li>
+<li>
+<p>Plot:</p>
+</li>
+<li>
+<p>Position vs. time</p>
+</li>
+<li>Energy vs. time</li>
+<li>Phase-space diagrams</li>
+<li>Trajectory overlaid on Earth diagram</li>
+</ul>
+<hr/>
+<h2 id="graphical-representations">📊 <strong>Graphical Representations</strong></h2>
+<ol>
+<li><strong>Trajectory Maps</strong>: Path of payload in real-time orbits</li>
+<li><strong>Energy Diagrams</strong>: Visualize when total energy crosses 0 (escape)</li>
+<li><strong>Altitude vs. Time</strong>: To identify orbital decay or escape</li>
+<li><strong>Velocity Vectors</strong>: To show direction and magnitude throughout motion</li>
+</ol>
+<hr/>
+<h2 id="deliverables-summary">📦 <strong>Deliverables Summary</strong></h2>
+<ol>
+<li>
+<p><strong>Markdown / Notebook</strong>:</p>
+</li>
+<li>
+<p>Equations</p>
+</li>
+<li>Simulation results</li>
+<li>
+<p>Trajectory plots</p>
+</li>
+<li>
+<p><strong>Detailed Report</strong>:</p>
+</li>
+<li>
+<p>Explanation of orbital mechanics</p>
+</li>
+<li>Energy analysis</li>
+<li>
+<p>Classifications of outcomes</p>
+</li>
+<li>
+<p><strong>Graphs and Diagrams</strong>:</p>
+</li>
+<li>
+<p>Trajectories for various conditions</p>
+</li>
+<li>Escape velocities at different altitudes</li>
+<li>Energy-time plots</li>
+</ol>
+<hr/>
+<h2 id="summary">🌠 <strong>Summary</strong></h2>
+<p>This project allows you to explore <strong>gravity-dominated motion</strong> in a realistic, computationally rich context. By studying the trajectories of a freely released payload:</p>
+<ul>
+<li>You apply Newton’s laws in a practical way</li>
+<li>Simulate satellite and spacecraft motion</li>
+<li>Prepare for more complex astrodynamics topics like multi-body interactions or maneuver planning</li>
 </ul>
 <hr/>
 </div>
