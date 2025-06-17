@@ -78,6 +78,12 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-resistor-network-graph">1. Resistor-Network Graph</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-flowchart-of-the-reduction-algorithm">2. Flowchart of the Reduction Algorithm</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use-these-schemes">How to Use These Schemes</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +178,60 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<hr/>
+<h3 id="1-resistor-network-graph">1. Resistor-Network Graph</h3>
+<p>The first diagram shows a sample resistor circuit rendered as a <strong>graph</strong>:</p>
+<ul>
+<li><strong>Nodes A–D</strong> represent junctions.</li>
+<li><strong>Edges</strong> carry a label giving the resistance value in Ω.</li>
+<li>This layout makes clear which resistors share common nodes, so series/parallel combinations can be detected algorithmically.</li>
+</ul>
+<p><em>(Use the image as a template: swap in any topology or edge-weights you need for test cases.)</em></p>
+<hr/>
+<h3 id="2-flowchart-of-the-reduction-algorithm">2. Flowchart of the Reduction Algorithm</h3>
+<p>The second image is a <strong>high-level schematic</strong> of an iterative graph-simplification routine:</p>
+<pre><code>Start with Circuit Graph
+        ↓
+   Find Series Connections
+        ↓
+ Replace with Single Resistor
+        ↓
+  Find Parallel Connections
+        ↓
+ Replace with Single Resistor
+(Loop until one equivalent edge remains)
+</code></pre>
+<p>This mirrors the pseudocode you would write:</p>
+<ol>
+<li><strong>Detect chains</strong> (two-degree nodes) → merge into a single edge (R = R₁ + R₂ + …).</li>
+<li><strong>Detect cycles</strong> of order 2 (parallel edges) → merge into one edge (1/R = Σ 1/Rᵢ).</li>
+<li>Repeat until the graph collapses to a single edge between the chosen terminals.</li>
+</ol>
+<hr/>
+<h2 id="how-to-use-these-schemes">How to Use These Schemes</h2>
+<table>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>How the Graphic Helps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unit testing</strong></td>
+<td>Try small graphs (triangle, bridge, cube) and compare the algorithm’s output to a hand calculation.</td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td>Embed the flowchart in your report so readers see the decision path at a glance.</td>
+</tr>
+<tr>
+<td><strong>Teaching/demo</strong></td>
+<td>Walk through the graph on a whiteboard, manually eliminating one series or parallel group at a time.</td>
+</tr>
+</tbody>
+</table>
+<p>Feel free to request more examples (e.g., Wheatstone bridge, cube network) or deeper algorithmic notes!</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
