@@ -72,27 +72,25 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#problem-simulating-the-effects-of-the-lorentz-force">⚛️ Problem: Simulating the Effects of the Lorentz Force</a>
+<li class="toctree-l3"><a class="reference internal" href="#1-why-the-lorentz-force-matters">1 Why the Lorentz Force Matters</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-governing-equations">2 Governing Equations</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#motivation">🧲 Motivation</a>
+<li class="toctree-l4"><a class="reference internal" href="#21-newtonlorentz-system-non-relativistic">2.1 Newton–Lorentz System (non-relativistic)</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#22-special-cases-to-build-intuition">2.2 Special Cases to Build Intuition</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#project-tasks">🔬 Project Tasks</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#1-exploration-of-applications">1. Exploration of Applications</a>
+<li class="toctree-l3"><a class="reference internal" href="#3-simulation-road-map-conceptual">3 Simulation Road-Map (Conceptual)</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#2-simulating-particle-motion">2. Simulating Particle Motion</a>
+<li class="toctree-l3"><a class="reference internal" href="#4-parameter-exploration-scenarios">4 Parameter-Exploration Scenarios</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#3-parameter-exploration">3. Parameter Exploration</a>
+<li class="toctree-l3"><a class="reference internal" href="#5-visualisation-blueprint">5 Visualisation Blueprint</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#4-visualization">4. Visualization</a>
+<li class="toctree-l3"><a class="reference internal" href="#6-connecting-to-real-systems">6 Connecting to Real Systems</a>
 </li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#suggested-tools">💻 Suggested Tools</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#deliverables">📤 Deliverables</a>
+<li class="toctree-l3"><a class="reference internal" href="#7-suggested-report-notebook-structure">7 Suggested Report / Notebook Structure</a>
 </li>
 </ul>
 </li>
@@ -195,82 +193,235 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
 <hr/>
-<h2 id="problem-simulating-the-effects-of-the-lorentz-force">⚛️ Problem: Simulating the Effects of the Lorentz Force</h2>
-<h3 id="motivation">🧲 Motivation</h3>
-<p>The Lorentz force:</p>
+<h2 id="1-why-the-lorentz-force-matters">1  Why the Lorentz Force Matters</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Typical Devices</th>
+<th>Why <span class="arithmatex">\(\mathbf{F}=q\bigl(\mathbf{E}+\mathbf{v}\times\mathbf{B}\bigr)\)</span> Is Central</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Particle physics</strong></td>
+<td>Cyclotrons, synchrotrons, beamlines</td>
+<td>Bends, focuses, &amp; accelerates beams with nm precision.</td>
+</tr>
+<tr>
+<td><strong>Plasma confinement</strong></td>
+<td>Tokamaks, stellarators, Z-pinches</td>
+<td>Determines gyration radius, drifts, &amp; stability.</td>
+</tr>
+<tr>
+<td><strong>Astrophysics</strong></td>
+<td>Solar wind, cosmic rays, auroras</td>
+<td>Shapes helical orbits and large-scale drifts in magnetospheres.</td>
+</tr>
+<tr>
+<td><strong>Analytical chemistry</strong></td>
+<td>Mass spectrometers</td>
+<td>Separates ions by <span class="arithmatex">\(m/q\)</span> via controlled <span class="arithmatex">\(E\)</span>–<span class="arithmatex">\(B\)</span> fields.</td>
+</tr>
+</tbody>
+</table>
+<p>Understanding—and visualising—charged-particle motion under combined <span class="arithmatex">\(\mathbf{E}\)</span> and <span class="arithmatex">\(\mathbf{B}\)</span> fields lets you <strong>predict trajectories, design instruments, and diagnose plasmas.</strong></p>
+<hr/>
+<h2 id="2-governing-equations">2  Governing Equations</h2>
+<h3 id="21-newtonlorentz-system-non-relativistic">2.1 Newton–Lorentz System (non-relativistic)</h3>
 <div class="arithmatex">\[
-\vec{F} = q(\vec{E} + \vec{v} \times \vec{B})
+m\frac{d\mathbf{v}}{dt}=q\!\left(\mathbf{E}+\mathbf{v}\times\mathbf{B}\right),\qquad
+\frac{d\mathbf{r}}{dt}=\mathbf{v}.
 \]</div>
-<p>governs charged particle motion in electric and magnetic fields. Simulating this helps visualize behavior in devices like cyclotrons, mass spectrometers, and magnetic traps.</p>
+<p>For relativistic speeds (<span class="arithmatex">\(v\!\sim\!c\)</span>), add the Lorentz factor <span class="arithmatex">\(\gamma\)</span>; otherwise this two-equation system suffices.</p>
+<h3 id="22-special-cases-to-build-intuition">2.2 Special Cases to Build Intuition</h3>
+<table>
+<thead>
+<tr>
+<th>Field Configuration</th>
+<th>Analytic Trajectory</th>
+<th>Key Quantities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Uniform <span class="arithmatex">\(\mathbf{B}=B\hat{z}\)</span> only</strong></td>
+<td>Perfect circle in <span class="arithmatex">\(x\)</span>–<span class="arithmatex">\(y\)</span> plane, uniform translation in <span class="arithmatex">\(z\)</span>.</td>
+<td>Larmor (cyclotron) frequency <span class="arithmatex">\(\omega_c = qB/m\)</span>; radius $ r_L = v_\perp/\omega_c$.</td>
+</tr>
+<tr>
+<td><strong>Uniform <span class="arithmatex">\(\mathbf{E}=E\hat{x}\)</span> only</strong></td>
+<td>Constant acceleration along <span class="arithmatex">\(x\)</span>.</td>
+<td>Classical kinematics.</td>
+</tr>
+<tr>
+<td><strong>Crossed <span class="arithmatex">\(\mathbf{E}\perp\mathbf{B}\)</span></strong></td>
+<td>Helix whose guiding center drifts at <span class="arithmatex">\(\mathbf{v}_{E\times B} = \mathbf{E}\times\mathbf{B}/B^{2}.\)</span></td>
+<td>No net acceleration in guiding center frame.</td>
+</tr>
+<tr>
+<td><strong>Non-uniform <span class="arithmatex">\(\mathbf{B}(r)\)</span></strong></td>
+<td>Gradient-<span class="arithmatex">\(\mathbf{B}\)</span> &amp; curvature drifts; complex.</td>
+<td>Requires numeric integration.</td>
+</tr>
+</tbody>
+</table>
 <hr/>
-<h2 id="project-tasks">🔬 Project Tasks</h2>
-<h3 id="1-exploration-of-applications">1. <strong>Exploration of Applications</strong></h3>
+<h2 id="3-simulation-road-map-conceptual">3  Simulation Road-Map (Conceptual)</h2>
+<blockquote>
+<p><strong>Tip:</strong> start simple (uniform fields), confirm analytics, then layer complexity.</p>
+</blockquote>
+<ol>
+<li><strong>State Vector</strong> <span class="arithmatex">\(\boldsymbol{y}(t)=\bigl[x,\,y,\,z,\,v_x,\,v_y,\,v_z\bigr]^{\!\top}\)</span></li>
+<li><strong>Derivatives</strong> </li>
+</ol>
+<p>$$
+   \dot{\boldsymbol{y}}
+   =
+   \begin{bmatrix}
+       v_x \ v_y \ v_z \[2pt]
+       \dfrac{q}{m}(E_x+v_yB_z-v_zB_y) \
+       \dfrac{q}{m}(E_y+v_zB_x-v_xB_z) \
+       \dfrac{q}{m}(E_z+v_xB_y-v_yB_x)
+   \end{bmatrix}
+   $$
+3. <strong>Integrator</strong> Fourth-order Runge–Kutta or leap-frog (symplectic; conserves energy in purely magnetic fields).
+4. <strong>Input Deck</strong> Allow the user to vary:</p>
 <ul>
-<li>Particle accelerators, fusion devices, astrophysics</li>
-<li>Understand the roles of electric (<span class="arithmatex">\(\vec{E}\)</span>) and magnetic (<span class="arithmatex">\(\vec{B}\)</span>) fields</li>
-</ul>
-<h3 id="2-simulating-particle-motion">2. <strong>Simulating Particle Motion</strong></h3>
-<ul>
-<li>
-<p>Scenarios:</p>
-</li>
-<li>
-<p>Uniform magnetic field</p>
-</li>
-<li>Uniform electric field</li>
-<li>Crossed <span class="arithmatex">\(\vec{E}\)</span> and <span class="arithmatex">\(\vec{B}\)</span> fields</li>
-<li>
-<p>Solve Newton's second law using:</p>
-</li>
-<li>
-<p>Euler or Runge-Kutta methods</p>
-</li>
-</ul>
-<h3 id="3-parameter-exploration">3. <strong>Parameter Exploration</strong></h3>
-<ul>
-<li>
-<p>Vary:</p>
-</li>
-<li>
-<p>Field strengths</p>
-</li>
-<li>Initial velocity</li>
-<li>Charge-to-mass ratio (<span class="arithmatex">\(q/m\)</span>)</li>
-<li>Observe effects on path shape, radius, and drift</li>
-</ul>
-<h3 id="4-visualization">4. <strong>Visualization</strong></h3>
-<ul>
-<li>2D/3D trajectory plots</li>
-<li>
-<p>Identify:</p>
-</li>
-<li>
-<p>Circular motion (Larmor radius)</p>
-</li>
-<li>Helical paths</li>
-<li>E×B drift</li>
+<li><span class="arithmatex">\(\mathbf{E},\mathbf{B}\)</span> (vectors or analytic functions of space)</li>
+<li>initial <span class="arithmatex">\(\mathbf{r}_0,\mathbf{v}_0\)</span></li>
+<li><span class="arithmatex">\(q, m\)</span> (compare electron, proton, ion)</li>
+<li><strong>Time Step</strong> Keep <span class="arithmatex">\(\Delta t \ll 1/\omega_c\)</span> to resolve gyration.</li>
 </ul>
 <hr/>
-<h2 id="suggested-tools">💻 Suggested Tools</h2>
-<ul>
-<li><code>numpy</code>: Numerical calculations</li>
-<li><code>matplotlib</code>: Plotting</li>
-<li><code>scipy.integrate.solve_ivp</code>: RK solver for motion</li>
-</ul>
+<h2 id="4-parameter-exploration-scenarios">4  Parameter-Exploration Scenarios</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Parameter Sweep</th>
+<th>Physical Insight to Capture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Simple gyration</strong></td>
+<td>Vary <span class="arithmatex">\(B\)</span> while fixing <span class="arithmatex">\(v_\perp\)</span>.</td>
+<td>Radius ∝ <span class="arithmatex">\(1/B\)</span>; frequency ∝ <span class="arithmatex">\(B\)</span>.</td>
+</tr>
+<tr>
+<td><strong><span class="arithmatex">\(E\!\times\!B\)</span> drift</strong></td>
+<td>Keep <span class="arithmatex">\(\mathbf{B}\)</span> fixed, scan <span class="arithmatex">\(E\)</span>.</td>
+<td>Linear guiding-center drift; helical pitch changes.</td>
+</tr>
+<tr>
+<td><strong>Magnetron-like motion</strong></td>
+<td>Weak <span class="arithmatex">\(\mathbf{E}\)</span> radial, strong axial <span class="arithmatex">\(\mathbf{B}\)</span>.</td>
+<td>Closed “racetrack” orbits (Penning trap).</td>
+</tr>
+<tr>
+<td><strong>Gradient-B drift</strong></td>
+<td>Introduce <span class="arithmatex">\(B(r)=B_0(1+\alpha r)\)</span>.</td>
+<td>Show vertical drift of guiding center (tokamak).</td>
+</tr>
+<tr>
+<td><strong>Mass spectrometry</strong></td>
+<td>Same <span class="arithmatex">\(\mathbf{E},\mathbf{B}\)</span>; vary <span class="arithmatex">\(m/q\)</span>.</td>
+<td>Spatial separation at detector plane; resolution vs. field strengths.</td>
+</tr>
+</tbody>
+</table>
 <hr/>
-<h2 id="deliverables">📤 Deliverables</h2>
-<ul>
+<h2 id="5-visualisation-blueprint">5  Visualisation Blueprint</h2>
+<ol>
+<li><strong>3-D Trajectory Plot</strong>
+   Colour by time or speed; annotate start/end.</li>
 <li>
-<p>Markdown or Jupyter Notebook with:</p>
+<p><strong>2-D Projections</strong> (<span class="arithmatex">\(x\!-\!y,\,x\!-\!z\)</span>)</p>
 </li>
 <li>
-<p>Code</p>
+<p>Circular orbits appear as circles, drift as slope.</p>
 </li>
-<li>Simulated paths</li>
-<li>Visuals of field configurations</li>
-<li>Discussion on real-world applications</li>
-<li>Optional: Extend to non-uniform fields or relativistic corrections</li>
-</ul>
+<li><strong>Phase-Space Portraits</strong> (<span class="arithmatex">\(v_x\)</span> vs. <span class="arithmatex">\(x\)</span>)
+   Convey energy conservation or acceleration.</li>
+<li><strong>Parameter Slider Animations</strong> (e.g., Larmor radius vs. <span class="arithmatex">\(B\)</span>)
+   Quickly demonstrates trends.</li>
+</ol>
+<hr/>
+<h2 id="6-connecting-to-real-systems">6  Connecting to Real Systems</h2>
+<table>
+<thead>
+<tr>
+<th>Real Device</th>
+<th>Dominant Field Geometry</th>
+<th>Design Metric from Simulation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cyclotron</strong></td>
+<td>Uniform axial <span class="arithmatex">\(B\)</span>; accelerating gaps (rf <span class="arithmatex">\(E\)</span>).</td>
+<td>Radius vs. energy to size magnet poles.</td>
+</tr>
+<tr>
+<td><strong>Penning trap</strong></td>
+<td>Axial <span class="arithmatex">\(B\)</span> + quadrupole <span class="arithmatex">\(E\)</span>.</td>
+<td>Confinement times; stability islands.</td>
+</tr>
+<tr>
+<td><strong>Mass spectrometer (E–B filter)</strong></td>
+<td>Perpendicular <span class="arithmatex">\(E\)</span> &amp; <span class="arithmatex">\(B\)</span>.</td>
+<td><span class="arithmatex">\(m/q\)</span> resolution curve; plate &amp; magnet specs.</td>
+</tr>
+<tr>
+<td><strong>Tokamak plasma</strong></td>
+<td>Strong toroidal <span class="arithmatex">\(B\)</span>; electric fields via induced current.</td>
+<td>Drift losses; confinement scaling with <span class="arithmatex">\(B\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="7-suggested-report-notebook-structure">7  Suggested Report / Notebook Structure</h2>
+<ol>
+<li><strong>Introduction &amp; Motivation</strong> (applications table)</li>
+<li>
+<p><strong>Theory</strong></p>
+</li>
+<li>
+<p>Derivation of Lorentz equations</p>
+</li>
+<li>Analytical solutions for benchmark cases</li>
+<li>
+<p><strong>Numerical Methodology</strong></p>
+</li>
+<li>
+<p>Integrator choice &amp; stability criteria</p>
+</li>
+<li>Validation against analytic cases</li>
+<li>
+<p><strong>Results</strong></p>
+</li>
+<li>
+<p>Scenario-wise trajectories &amp; plots</p>
+</li>
+<li>Parameter-sweep graphs (e.g., <span class="arithmatex">\(r_L(B)\)</span>)</li>
+<li>
+<p><strong>Discussion</strong></p>
+</li>
+<li>
+<p>Physical interpretation (Larmor radius, drifts)</p>
+</li>
+<li>Relevance to chosen device(s)</li>
+<li>Limitations: neglect of collisions, radiation, relativity</li>
+<li>
+<p><strong>Extensions</strong> (next steps)</p>
+</li>
+<li>
+<p>Relativistic upgrade (<span class="arithmatex">\(\gamma\)</span>), synchrotron radiation loss</p>
+</li>
+<li>Non-uniform, time-varying fields</li>
+<li>Many-particle interactions (space-charge effects)</li>
+</ol>
 <hr/>
 </div>
 </div><footer>
