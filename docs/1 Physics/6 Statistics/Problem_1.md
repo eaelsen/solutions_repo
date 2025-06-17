@@ -24,6 +24,8 @@ This theorem is foundational because it **justifies** the widespread use of **no
 Despite its theoretical depth, the CLT is **best understood through visualization and simulation**, which is what this project offers.
 
 ---
+![CLT Histogram Visualization](img/statistic1.png)
+
 
 ## 🧪 Simulation Objectives
 
