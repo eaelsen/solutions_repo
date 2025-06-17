@@ -15,6 +15,8 @@
 Understanding—and visualising—charged-particle motion under combined $\mathbf{E}$ and $\mathbf{B}$ fields lets you **predict trajectories, design instruments, and diagnose plasmas.**
 
 ---
+![Electromagnetism Chart 1](img/electromagnetism1.png)  
+
 
 ## 2  Governing Equations
 
@@ -55,6 +57,9 @@ For relativistic speeds ($v\!\sim\!c$), add the Lorentz factor $\gamma$; otherwi
        \dfrac{q}{m}(E_z+v_xB_y-v_yB_x)
    \end{bmatrix}
    $$
+
+![Electromagnetism Chart 2](img/electromagnetism2.png)
+
 3. **Integrator** Fourth-order Runge–Kutta or leap-frog (symplectic; conserves energy in purely magnetic fields).
 4. **Input Deck** Allow the user to vary:
 
