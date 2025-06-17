@@ -50,41 +50,25 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#problem-2-investigating-the-dynamics-of-a-forced-damped-pendulum">🌀 Problem 2: Investigating the Dynamics of a Forced Damped Pendulum</a>
+<li class="toctree-l3"><a class="reference internal" href="#theoretical-foundation">🧠 Theoretical Foundation</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#motivation">🧭 Motivation</a>
+<li class="toctree-l4"><a class="reference internal" href="#differential-equation-of-motion">⚙️ Differential Equation of Motion</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#linear-approximation-small-angle">🔍 Linear Approximation (Small-Angle)</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. 📘 Theoretical Foundation</a>
+<li class="toctree-l3"><a class="reference internal" href="#analysis-of-dynamics">📊 Analysis of Dynamics</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#general-equation-of-motion">General Equation of Motion:</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#small-angle-approximation">Small-Angle Approximation:</a>
+<li class="toctree-l4"><a class="reference internal" href="#transition-to-chaos">📌 Transition to Chaos</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#2-analysis-of-dynamics">2. 📊 Analysis of Dynamics</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#chaos">Chaos:</a>
+<li class="toctree-l3"><a class="reference internal" href="#practical-applications">🛠️ Practical Applications</a>
 </li>
-</ul>
+<li class="toctree-l3"><a class="reference internal" href="#implementation-conceptual-steps">📐 Implementation (Conceptual Steps)</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#3-practical-applications">3. 🌍 Practical Applications</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#4-implementation-python-code">4. 💻 Implementation (Python Code)</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#phase-space-and-poincare-section">🔁 Phase Space and Poincaré Section</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#discussion-limitations">🧠 Discussion &amp; Limitations</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#limitations">Limitations:</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#extensions">Extensions:</a>
-</li>
-</ul>
+<li class="toctree-l3"><a class="reference internal" href="#deliverables-summary-conceptual">📦 Deliverables Summary (Conceptual)</a>
 </li>
 </ul>
 </li>
@@ -209,126 +193,99 @@
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
 <hr/>
-<h2 id="problem-2-investigating-the-dynamics-of-a-forced-damped-pendulum">🌀 Problem 2: Investigating the Dynamics of a Forced Damped Pendulum</h2>
-<h3 id="motivation">🧭 Motivation</h3>
-<p>The forced damped pendulum showcases the interplay between damping, restoring forces, and external driving. It offers insight into linear vs. nonlinear behavior, including resonance and chaotic dynamics—key phenomena in real-world systems like circuits, bridges, and biomechanics.</p>
-<hr/>
-<h2 id="1-theoretical-foundation">1. 📘 Theoretical Foundation</h2>
-<h3 id="general-equation-of-motion">General Equation of Motion:</h3>
+<h2 id="theoretical-foundation">🧠 Theoretical Foundation</h2>
+<p>The <strong>forced damped pendulum</strong> is a system that combines:</p>
+<ul>
+<li>Restoring force (gravity)</li>
+<li>Damping force (e.g., friction or air resistance)</li>
+<li>Periodic external driving force (like a motor)</li>
+</ul>
+<h3 id="differential-equation-of-motion">⚙️ Differential Equation of Motion</h3>
+<p>The motion is governed by the second-order nonlinear differential equation:</p>
 <div class="arithmatex">\[
-\frac{d^2\theta}{dt^2} + \gamma \frac{d\theta}{dt} + \omega_0^2 \sin\theta = A \cos(\omega t)
+\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \omega_0^2 \sin\theta = A \cos(\omega t)
 \]</div>
 <p>Where:</p>
 <ul>
-<li><span class="arithmatex">\(\theta\)</span>: angular displacement</li>
-<li><span class="arithmatex">\(\gamma\)</span>: damping coefficient</li>
-<li><span class="arithmatex">\(\omega_0\)</span>: natural frequency <span class="arithmatex">\((\sqrt{g/L})\)</span></li>
-<li><span class="arithmatex">\(A\)</span>: amplitude of the external force</li>
-<li><span class="arithmatex">\(\omega\)</span>: driving frequency</li>
+<li><span class="arithmatex">\(\theta(t)\)</span>: Angular displacement as a function of time</li>
+<li><span class="arithmatex">\(b\)</span>: Damping coefficient</li>
+<li><span class="arithmatex">\(\omega_0\)</span>: Natural frequency of the undamped pendulum (<span class="arithmatex">\(\omega_0 = \sqrt{\frac{g}{L}}\)</span>)</li>
+<li><span class="arithmatex">\(A\)</span>: Amplitude of external forcing</li>
+<li><span class="arithmatex">\(\omega\)</span>: Angular frequency of the external driving force</li>
 </ul>
-<h3 id="small-angle-approximation">Small-Angle Approximation:</h3>
-<p>For small <span class="arithmatex">\(\theta\)</span>, <span class="arithmatex">\(\sin\theta \approx \theta\)</span>, giving:</p>
+<hr/>
+<h3 id="linear-approximation-small-angle">🔍 Linear Approximation (Small-Angle)</h3>
+<p>For small oscillations, where <span class="arithmatex">\(\sin \theta \approx \theta\)</span>, the equation simplifies to:</p>
 <div class="arithmatex">\[
-\frac{d^2\theta}{dt^2} + \gamma \frac{d\theta}{dt} + \omega_0^2 \theta = A \cos(\omega t)
+\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \omega_0^2 \theta = A \cos(\omega t)
 \]</div>
-<p>This is a linear second-order ODE with periodic forcing. Solutions can exhibit:</p>
+<p>This is the <strong>driven damped harmonic oscillator</strong> equation.</p>
+<hr/>
+<h2 id="analysis-of-dynamics">📊 Analysis of Dynamics</h2>
+<p>By varying parameters like:</p>
 <ul>
-<li><strong>Underdamping</strong></li>
-<li><strong>Resonance</strong> (when <span class="arithmatex">\(\omega \approx \omega_0\)</span>)</li>
-<li><strong>Steady-state</strong> oscillation</li>
+<li>Damping (<span class="arithmatex">\(b\)</span>)</li>
+<li>Driving amplitude (<span class="arithmatex">\(A\)</span>)</li>
+<li>Driving frequency (<span class="arithmatex">\(\omega\)</span>)</li>
+</ul>
+<p>You can observe different behaviors:</p>
+<ul>
+<li><strong>Underdamped motion</strong>: Gradual decay</li>
+<li><strong>Resonance</strong>: Maximal response at driving frequency <span class="arithmatex">\(\omega \approx \omega_0\)</span></li>
+<li><strong>Chaotic behavior</strong>: Sensitive dependence on initial conditions</li>
+</ul>
+<h3 id="transition-to-chaos">📌 Transition to Chaos</h3>
+<p>As you increase the driving strength or tweak parameters, the system can shift from <strong>regular periodic</strong> motion to <strong>chaotic</strong> motion — i.e., irregular, unpredictable behavior that is still deterministic.</p>
+<hr/>
+<h2 id="practical-applications">🛠️ Practical Applications</h2>
+<p>The forced damped pendulum model is relevant to:</p>
+<ul>
+<li>Energy harvesting systems (piezoelectric, electromagnetic)</li>
+<li>Bridge and building dynamics (e.g., damping in skyscrapers)</li>
+<li>Clock escapements</li>
+<li>RLC circuits (analogous systems in electrical engineering)</li>
 </ul>
 <hr/>
-<h2 id="2-analysis-of-dynamics">2. 📊 Analysis of Dynamics</h2>
-<p>We explore:</p>
-<ul>
-<li>Effects of increasing <span class="arithmatex">\(\gamma\)</span>: faster decay, less oscillation.</li>
-<li>Varying <span class="arithmatex">\(A\)</span>: transition from linear to nonlinear behavior.</li>
-<li>Tuning <span class="arithmatex">\(\omega\)</span>: resonance effects and bifurcations.</li>
-</ul>
-<h3 id="chaos">Chaos:</h3>
-<p>Numerical solutions (no small-angle approx) show:</p>
-<ul>
-<li><strong>Regular behavior</strong> (periodic or quasiperiodic)</li>
-<li><strong>Chaotic behavior</strong> (sensitive dependence on initial conditions)</li>
-</ul>
+<h2 id="implementation-conceptual-steps">📐 Implementation (Conceptual Steps)</h2>
+<ol>
+<li>
+<p><strong>Model Setup</strong>:</p>
+</li>
+<li>
+<p>Define the equation of motion</p>
+</li>
+<li>
+<p>Choose parameter sets (damping, amplitude, frequency)</p>
+</li>
+<li>
+<p><strong>Numerical Integration</strong>:</p>
+</li>
+<li>
+<p>Use numerical methods (e.g., Runge-Kutta) for solving the differential equation</p>
+</li>
+<li>
+<p><strong>Phase Space Analysis</strong>:</p>
+</li>
+<li>
+<p>Plot phase portraits (<span class="arithmatex">\(\theta\)</span> vs. <span class="arithmatex">\(\dot{\theta}\)</span>)</p>
+</li>
+<li>
+<p>Create Poincaré sections (sample the system once every driving cycle)</p>
+</li>
+<li>
+<p><strong>Bifurcation Diagrams</strong>:</p>
+</li>
+<li>
+<p>Show transitions in motion as a parameter (e.g., <span class="arithmatex">\(A\)</span> or <span class="arithmatex">\(\omega\)</span>) is varied</p>
+</li>
+</ol>
 <hr/>
-<h2 id="3-practical-applications">3. 🌍 Practical Applications</h2>
+<h2 id="deliverables-summary-conceptual">📦 Deliverables Summary (Conceptual)</h2>
 <ul>
-<li><strong>RLC circuits</strong> (analogous to the pendulum)</li>
-<li><strong>Human gait dynamics</strong></li>
-<li><strong>Bridge design</strong> (e.g., Tacoma Narrows Bridge collapse)</li>
-<li><strong>Energy harvesters</strong> using periodic mechanical motion</li>
-</ul>
-<hr/>
-<h2 id="4-implementation-python-code">4. 💻 Implementation (Python Code)</h2>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
-
-# Parameters
-gamma = 0.2      # damping coefficient
-omega0 = 1.5     # natural frequency
-A = 1.2          # forcing amplitude
-omega_d = 2/3    # driving frequency
-
-def pendulum(t, y):
-    theta, omega = y
-    dtheta_dt = omega
-    domega_dt = -gamma * omega - omega0**2 * np.sin(theta) + A * np.cos(omega_d * t)
-    return [dtheta_dt, domega_dt]
-
-# Initial conditions
-y0 = [0.2, 0.0]
-t_eval = np.linspace(0, 100, 10000)
-
-# Solve ODE
-sol = solve_ivp(pendulum, [0, 100], y0, t_eval=t_eval)
-
-# Plot
-plt.figure(figsize=(10, 4))
-plt.plot(sol.t, sol.y[0])
-plt.title("Forced Damped Pendulum Motion")
-plt.xlabel("Time")
-plt.ylabel("Theta (rad)")
-plt.grid(True)
-plt.show()
-</code></pre>
-<hr/>
-<h3 id="phase-space-and-poincare-section">🔁 Phase Space and Poincaré Section</h3>
-<pre><code class="language-python"># Phase portrait
-plt.figure()
-plt.plot(sol.y[0], sol.y[1], lw=0.5)
-plt.title("Phase Space: θ vs ω")
-plt.xlabel("Theta")
-plt.ylabel("Angular Velocity")
-plt.grid(True)
-plt.show()
-
-# Poincaré section (sample once every drive period)
-T_drive = 2 * np.pi / omega_d
-indices = np.arange(int(T_drive / (t_eval[1]-t_eval[0])), len(t_eval), int(T_drive / (t_eval[1]-t_eval[0])))
-
-plt.figure()
-plt.plot(sol.y[0][indices], sol.y[1][indices], 'o', markersize=1)
-plt.title("Poincaré Section")
-plt.xlabel("Theta")
-plt.ylabel("Angular Velocity")
-plt.grid(True)
-plt.show()
-</code></pre>
-<hr/>
-<h2 id="discussion-limitations">🧠 Discussion &amp; Limitations</h2>
-<h3 id="limitations">Limitations:</h3>
-<ul>
-<li>Small-angle approximation fails at large amplitudes.</li>
-<li>Ignores frictional forces with different damping profiles.</li>
-<li>Assumes perfectly periodic driving force.</li>
-</ul>
-<h3 id="extensions">Extensions:</h3>
-<ul>
-<li>Nonlinear damping: <span class="arithmatex">\(\propto |\omega|\omega\)</span></li>
-<li>Stochastic or aperiodic driving force</li>
-<li>Double pendulum for richer chaos</li>
+<li>Theoretical derivation of the motion</li>
+<li>Visuals: trajectories, phase diagrams, bifurcation plots</li>
+<li>Discussion on regular vs. chaotic motion</li>
+<li>Insights on physical meaning and real-world parallels</li>
 </ul>
 <hr/>
 </div>
