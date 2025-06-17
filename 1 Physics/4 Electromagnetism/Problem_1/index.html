@@ -227,6 +227,7 @@
 </table>
 <p>Understanding—and visualising—charged-particle motion under combined <span class="arithmatex">\(\mathbf{E}\)</span> and <span class="arithmatex">\(\mathbf{B}\)</span> fields lets you <strong>predict trajectories, design instruments, and diagnose plasmas.</strong></p>
 <hr/>
+<p><img alt="Electromagnetism Chart 1" src="../img/electromagnetism1.png"/> </p>
 <h2 id="2-governing-equations">2  Governing Equations</h2>
 <h3 id="21-newtonlorentz-system-non-relativistic">2.1 Newton–Lorentz System (non-relativistic)</h3>
 <div class="arithmatex">\[
@@ -284,15 +285,20 @@ m\frac{d\mathbf{v}}{dt}=q\!\left(\mathbf{E}+\mathbf{v}\times\mathbf{B}\right),\q
        \dfrac{q}{m}(E_y+v_zB_x-v_xB_z) \
        \dfrac{q}{m}(E_z+v_xB_y-v_yB_x)
    \end{bmatrix}
-   $$
-3. <strong>Integrator</strong> Fourth-order Runge–Kutta or leap-frog (symplectic; conserves energy in purely magnetic fields).
-4. <strong>Input Deck</strong> Allow the user to vary:</p>
-<ul>
-<li><span class="arithmatex">\(\mathbf{E},\mathbf{B}\)</span> (vectors or analytic functions of space)</li>
+   $$</p>
+<p><img alt="Electromagnetism Chart 2" src="../img/electromagnetism2.png"/></p>
+<ol>
+<li><strong>Integrator</strong> Fourth-order Runge–Kutta or leap-frog (symplectic; conserves energy in purely magnetic fields).</li>
+<li>
+<p><strong>Input Deck</strong> Allow the user to vary:</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathbf{E},\mathbf{B}\)</span> (vectors or analytic functions of space)</p>
+</li>
 <li>initial <span class="arithmatex">\(\mathbf{r}_0,\mathbf{v}_0\)</span></li>
 <li><span class="arithmatex">\(q, m\)</span> (compare electron, proton, ion)</li>
 <li><strong>Time Step</strong> Keep <span class="arithmatex">\(\Delta t \ll 1/\omega_c\)</span> to resolve gyration.</li>
-</ul>
+</ol>
 <hr/>
 <h2 id="4-parameter-exploration-scenarios">4  Parameter-Exploration Scenarios</h2>
 <table>
