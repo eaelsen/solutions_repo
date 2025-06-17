@@ -86,38 +86,6 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#project-estimating-using-monte-carlo-methods">🧮 Project: Estimating π Using Monte Carlo Methods</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#motivation">🎯 Motivation</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#part-1-estimating-using-a-circle">🧪 Part 1: Estimating π Using a Circle</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#theoretical-basis">Theoretical Basis:</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#simulation-steps">Simulation Steps:</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#part-2-estimating-using-buffons-needle">📏 Part 2: Estimating π Using Buffon's Needle</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#theoretical-basis_1">Theoretical Basis:</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#simulation-steps_1">Simulation Steps:</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#deliverables">📈 Deliverables</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#circle-based-estimation">🟢 Circle-Based Estimation</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#buffons-needle-estimation">📏 Buffon's Needle Estimation</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#summary-comparison">📌 Summary Comparison</a>
-</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -204,112 +172,174 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
-<p>\</p>
 <hr/>
-<h2 id="project-estimating-using-monte-carlo-methods">🧮 Project: Estimating π Using Monte Carlo Methods</h2>
-<h3 id="motivation">🎯 Motivation</h3>
-<p>Monte Carlo simulations provide a visual and statistical approach to estimate π using:</p>
+<h1 id="estimating-using-monte-carlo-methods">🎯 <strong>Estimating π Using Monte Carlo Methods</strong></h1>
+<p><em>A blend of geometry, probability, and simulation to approximate a mathematical constant.</em></p>
+<hr/>
+<h2 id="motivation">🌟 <strong>Motivation</strong></h2>
+<p>π (pi) is one of the most fundamental constants in mathematics and physics. While it is often introduced through geometry (as the ratio of a circle's circumference to its diameter), π can also be <strong>estimated probabilistically</strong> using <strong>Monte Carlo methods</strong>.</p>
+<p>These approaches allow students to:</p>
 <ul>
-<li><strong>Circle-based random point sampling</strong></li>
-<li><strong>Buffon’s Needle probability experiment</strong></li>
+<li>Apply <strong>random sampling</strong> and <strong>statistical reasoning</strong>.</li>
+<li>Connect abstract mathematics with <strong>geometric intuition</strong>.</li>
+<li>Learn about <strong>convergence, variance, and computational accuracy</strong>.</li>
 </ul>
-<p>These methods not only estimate π but also teach key concepts in randomness, convergence, and computational modeling.</p>
-<hr/>
-<h2 id="part-1-estimating-using-a-circle">🧪 Part 1: Estimating π Using a Circle</h2>
-<h3 id="theoretical-basis">Theoretical Basis:</h3>
-<div class="arithmatex">\[
-\pi \approx 4 \cdot \frac{\text{points inside the circle}}{\text{total points}}
-\]</div>
-<h3 id="simulation-steps">Simulation Steps:</h3>
+<p>Two famous Monte Carlo methods to estimate π are:</p>
 <ol>
-<li>Generate random <span class="arithmatex">\((x, y)\)</span> points in a unit square</li>
-<li>Check whether they fall inside the unit circle: <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span></li>
-<li>Estimate π and visualize the point distribution</li>
+<li><strong>The Dartboard (Circle-in-Square) Method</strong></li>
+<li><strong>Buffon's Needle Experiment</strong></li>
 </ol>
+<p>Both methods rely on randomness and geometric probability but approach the estimation in different ways.</p>
 <hr/>
-<h2 id="part-2-estimating-using-buffons-needle">📏 Part 2: Estimating π Using Buffon's Needle</h2>
-<h3 id="theoretical-basis_1">Theoretical Basis:</h3>
+<h2 id="part-1-circle-in-a-square-method">🧮 Part 1: Circle in a Square Method</h2>
+<h3 id="1-theoretical-foundation">🧠 1. Theoretical Foundation</h3>
+<p>A circle of radius <span class="arithmatex">\(r = 1\)</span> can be inscribed inside a square of side 2. The area of the:</p>
+<ul>
+<li>Circle = <span class="arithmatex">\(\pi r^2 = \pi\)</span></li>
+<li>Square = <span class="arithmatex">\((2r)^2 = 4\)</span></li>
+</ul>
+<p>So the ratio of the <strong>circle’s area to the square’s area</strong> is:</p>
 <div class="arithmatex">\[
-\pi \approx \frac{2L \cdot N}{d \cdot C}
+\frac{\text{Area of circle}}{\text{Area of square}} = \frac{\pi}{4}
+\]</div>
+<p>If we generate points randomly inside the square, the fraction of points that fall inside the circle should approximate <span class="arithmatex">\(\pi / 4\)</span>, thus:</p>
+<div class="arithmatex">\[
+\boxed{\pi \approx 4 \cdot \frac{\text{Points inside the circle}}{\text{Total points}}}
+\]</div>
+<hr/>
+<h3 id="2-simulation">🧪 2. Simulation</h3>
+<ul>
+<li>Generate <span class="arithmatex">\(N\)</span> random points <span class="arithmatex">\((x, y)\)</span> in the square <span class="arithmatex">\([-1, 1] \times [-1, 1]\)</span>.</li>
+<li>Use the condition <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span> to determine if the point is <strong>inside</strong> the circle.</li>
+<li>Estimate π using the formula above.</li>
+</ul>
+<hr/>
+<h3 id="3-visualization">📊 3. Visualization</h3>
+<ul>
+<li>Plot all the sampled points.</li>
+<li>Color <strong>inside points</strong> differently from <strong>outside points</strong>.</li>
+<li>Show the circle boundary for visual reference.</li>
+<li>Add a dynamic tracker for π estimate vs. number of points.</li>
+</ul>
+<hr/>
+<h3 id="4-analysis">🔍 4. Analysis</h3>
+<ul>
+<li>Observe how the estimate <strong>converges</strong> to π as the number of samples increases.</li>
+<li>
+<p>Study the <strong>variance</strong> and <strong>convergence rate</strong>:</p>
+</li>
+<li>
+<p>Larger samples reduce error.</p>
+</li>
+<li>Estimator variance is proportional to <span class="arithmatex">\(\frac{1}{n}\)</span>.</li>
+</ul>
+<hr/>
+<h2 id="part-2-buffons-needle-method">📏 Part 2: Buffon’s Needle Method</h2>
+<h3 id="1-theoretical-foundation_1">🧠 1. Theoretical Foundation</h3>
+<p>Buffon’s Needle problem involves dropping a needle of length <span class="arithmatex">\(L\)</span> onto a floor marked with <strong>parallel lines</strong> separated by a distance <span class="arithmatex">\(d\)</span>. The probability that the needle crosses a line is related to π.</p>
+<p>If <span class="arithmatex">\(L \leq d\)</span>, the probability <span class="arithmatex">\(P\)</span> of crossing is:</p>
+<div class="arithmatex">\[
+\boxed{P = \frac{2L}{\pi d}}
+\quad \Rightarrow \quad
+\boxed{\pi \approx \frac{2L \cdot N}{d \cdot C}}
 \]</div>
 <p>Where:</p>
 <ul>
-<li><span class="arithmatex">\(L\)</span> = needle length</li>
-<li><span class="arithmatex">\(d\)</span> = distance between parallel lines</li>
-<li><span class="arithmatex">\(N\)</span> = number of drops</li>
-<li><span class="arithmatex">\(C\)</span> = number of crossings</li>
+<li><span class="arithmatex">\(N\)</span>: total number of needle drops</li>
+<li><span class="arithmatex">\(C\)</span>: number of crossings</li>
 </ul>
-<h3 id="simulation-steps_1">Simulation Steps:</h3>
-<ol>
-<li>Randomly generate needle positions and angles</li>
-<li>Check if the needle crosses a line</li>
-<li>Estimate π and visualize the needles relative to the lines</li>
-</ol>
 <hr/>
-<h2 id="deliverables">📈 Deliverables</h2>
+<h3 id="2-simulation_1">🧪 2. Simulation</h3>
+<ul>
+<li>Simulate randomly oriented and positioned needles.</li>
+<li>
+<p>For each needle:</p>
+</li>
+<li>
+<p>Drop with random center position <span class="arithmatex">\(x \in [0, d/2]\)</span></p>
+</li>
+<li>Pick a random angle <span class="arithmatex">\(\theta \in [0, \pi/2]\)</span></li>
+<li>
+<p>Determine if the needle crosses a line:</p>
+<p>$$
+\text{Crosses if } x \leq \frac{L}{2} \sin(\theta)
+$$
+* Use the empirical ratio of crossings to estimate π.</p>
+</li>
+</ul>
+<hr/>
+<h3 id="3-visualization_1">📊 3. Visualization</h3>
 <ul>
 <li>
-<p><strong>Markdown/Jupyter Notebook</strong>:</p>
+<p>Plot the needle positions, with:</p>
 </li>
 <li>
-<p>Derivations and explanations</p>
+<p><strong>Crossing needles</strong> in one color</p>
 </li>
-<li>Python simulations for both methods</li>
-<li>
-<p><strong>Visualizations</strong>:</p>
-</li>
-<li>
-<p>Circle hits/misses</p>
-</li>
-<li>Needle positions and crossings</li>
-<li>
-<p><strong>Analysis</strong>:</p>
-</li>
-<li>
-<p>Compare convergence speed and accuracy</p>
-</li>
-<li>Discuss trade-offs and computational cost</li>
+<li><strong>Non-crossing needles</strong> in another</li>
+<li>Display the π estimate on the figure.</li>
+<li>Optionally animate the dropping process.</li>
 </ul>
 <hr/>
-<h3 id="circle-based-estimation">🟢 Circle-Based Estimation</h3>
+<h3 id="4-analysis_1">🔍 4. Analysis</h3>
 <ul>
-<li>Points are randomly distributed inside a unit square.</li>
-<li>Points inside the quarter circle are shown in green, outside in red.</li>
-<li><strong>Estimated value of π ≈ 3.14880</strong> (very close to the actual value!).</li>
+<li>Buffon’s method tends to <strong>converge slower</strong> than the circle method.</li>
+<li>It is more <strong>sensitive to randomness</strong> and needs <strong>more trials</strong> for accurate estimation.</li>
+<li>Nonetheless, it’s a powerful demonstration of geometric probability and randomness.</li>
 </ul>
 <hr/>
-<h3 id="buffons-needle-estimation">📏 Buffon's Needle Estimation</h3>
-<ul>
-<li>Needles are randomly dropped on a plane with parallel lines.</li>
-<li>Green needles cross a line, red needles do not.</li>
-<li><strong>Estimated value of π ≈ 3.15060</strong>, also close but typically more variable unless many samples are used.</li>
-</ul>
-<hr/>
-<h3 id="summary-comparison">📌 Summary Comparison</h3>
+<h2 id="deliverables-summary">📦 Deliverables Summary</h2>
 <table>
 <thead>
 <tr>
-<th>Method</th>
-<th>Trials</th>
-<th>Estimated π</th>
-<th>Notes</th>
+<th>Component</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Circle Sampling</td>
-<td>10,000</td>
-<td>3.14880</td>
-<td>Simple, intuitive, consistent</td>
+<td>✅ <strong>Markdown/Report</strong></td>
+<td>Theory, assumptions, formulas, methodology</td>
 </tr>
 <tr>
-<td>Buffon’s Needle</td>
-<td>10,000</td>
-<td>3.15060</td>
-<td>More variable, depends on geometry</td>
+<td>✅ <strong>Simulation Code</strong></td>
+<td>One script for each method</td>
+</tr>
+<tr>
+<td>✅ <strong>Visualizations</strong></td>
+<td>Point scatter (circle method), needle plot (Buffon)</td>
+</tr>
+<tr>
+<td>✅ <strong>Comparative Analysis</strong></td>
+<td>Accuracy, convergence speed, computational time</td>
+</tr>
+<tr>
+<td>✅ <strong>Discussion</strong></td>
+<td>Strengths and limitations of each method</td>
 </tr>
 </tbody>
 </table>
+<hr/>
+<h2 id="advanced-extensions-optional">⚙️ Advanced Extensions (Optional)</h2>
+<ul>
+<li>Compare convergence rates using graphs (π vs. iterations).</li>
+<li>Include <strong>confidence intervals</strong> on estimates.</li>
+<li>Optimize performance with <strong>vectorized operations</strong> (NumPy).</li>
+<li>Compare with <strong>true π</strong> using relative error:</li>
+</ul>
+<p>$$
+  \text{Error} = \left|\frac{\hat{\pi} - \pi}{\pi}\right|
+  $$</p>
+<hr/>
+<h2 id="educational-impact">📚 Educational Impact</h2>
+<p>This project fosters understanding in:</p>
+<ul>
+<li><strong>Random sampling</strong></li>
+<li><strong>Probability and geometry</strong></li>
+<li><strong>Estimation and convergence</strong></li>
+<li><strong>Visualization and error analysis</strong></li>
+</ul>
+<p>It also develops computational skills while illustrating how randomness can help solve deterministic problems.</p>
 <hr/>
 </div>
 </div><footer>
