@@ -1,152 +1,104 @@
 # Problem 2
 
----
-
-## 🌀 Problem 2: Investigating the Dynamics of a Forced Damped Pendulum
-
-### 🧭 Motivation
-
-The forced damped pendulum showcases the interplay between damping, restoring forces, and external driving. It offers insight into linear vs. nonlinear behavior, including resonance and chaotic dynamics—key phenomena in real-world systems like circuits, bridges, and biomechanics.
 
 ---
 
-## 1. 📘 Theoretical Foundation
+## 🧠 Theoretical Foundation
 
-### General Equation of Motion:
+The **forced damped pendulum** is a system that combines:
+
+* Restoring force (gravity)
+* Damping force (e.g., friction or air resistance)
+* Periodic external driving force (like a motor)
+
+### ⚙️ Differential Equation of Motion
+
+The motion is governed by the second-order nonlinear differential equation:
 
 $$
-\frac{d^2\theta}{dt^2} + \gamma \frac{d\theta}{dt} + \omega_0^2 \sin\theta = A \cos(\omega t)
+\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \omega_0^2 \sin\theta = A \cos(\omega t)
 $$
 
 Where:
 
-* $\theta$: angular displacement
-* $\gamma$: damping coefficient
-* $\omega_0$: natural frequency $(\sqrt{g/L})$
-* $A$: amplitude of the external force
-* $\omega$: driving frequency
+* $\theta(t)$: Angular displacement as a function of time
+* $b$: Damping coefficient
+* $\omega_0$: Natural frequency of the undamped pendulum ($\omega_0 = \sqrt{\frac{g}{L}}$)
+* $A$: Amplitude of external forcing
+* $\omega$: Angular frequency of the external driving force
 
-### Small-Angle Approximation:
+---
 
-For small $\theta$, $\sin\theta \approx \theta$, giving:
+### 🔍 Linear Approximation (Small-Angle)
+
+For small oscillations, where $\sin \theta \approx \theta$, the equation simplifies to:
 
 $$
-\frac{d^2\theta}{dt^2} + \gamma \frac{d\theta}{dt} + \omega_0^2 \theta = A \cos(\omega t)
+\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \omega_0^2 \theta = A \cos(\omega t)
 $$
 
-This is a linear second-order ODE with periodic forcing. Solutions can exhibit:
-
-* **Underdamping**
-* **Resonance** (when $\omega \approx \omega_0$)
-* **Steady-state** oscillation
+This is the **driven damped harmonic oscillator** equation.
 
 ---
 
-## 2. 📊 Analysis of Dynamics
+## 📊 Analysis of Dynamics
 
-We explore:
+By varying parameters like:
 
-* Effects of increasing $\gamma$: faster decay, less oscillation.
-* Varying $A$: transition from linear to nonlinear behavior.
-* Tuning $\omega$: resonance effects and bifurcations.
+* Damping ($b$)
+* Driving amplitude ($A$)
+* Driving frequency ($\omega$)
 
-### Chaos:
+You can observe different behaviors:
 
-Numerical solutions (no small-angle approx) show:
+* **Underdamped motion**: Gradual decay
+* **Resonance**: Maximal response at driving frequency $\omega \approx \omega_0$
+* **Chaotic behavior**: Sensitive dependence on initial conditions
 
-* **Regular behavior** (periodic or quasiperiodic)
-* **Chaotic behavior** (sensitive dependence on initial conditions)
+### 📌 Transition to Chaos
 
----
-
-## 3. 🌍 Practical Applications
-
-* **RLC circuits** (analogous to the pendulum)
-* **Human gait dynamics**
-* **Bridge design** (e.g., Tacoma Narrows Bridge collapse)
-* **Energy harvesters** using periodic mechanical motion
+As you increase the driving strength or tweak parameters, the system can shift from **regular periodic** motion to **chaotic** motion — i.e., irregular, unpredictable behavior that is still deterministic.
 
 ---
 
-## 4. 💻 Implementation (Python Code)
+## 🛠️ Practical Applications
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
+The forced damped pendulum model is relevant to:
 
-# Parameters
-gamma = 0.2      # damping coefficient
-omega0 = 1.5     # natural frequency
-A = 1.2          # forcing amplitude
-omega_d = 2/3    # driving frequency
-
-def pendulum(t, y):
-    theta, omega = y
-    dtheta_dt = omega
-    domega_dt = -gamma * omega - omega0**2 * np.sin(theta) + A * np.cos(omega_d * t)
-    return [dtheta_dt, domega_dt]
-
-# Initial conditions
-y0 = [0.2, 0.0]
-t_eval = np.linspace(0, 100, 10000)
-
-# Solve ODE
-sol = solve_ivp(pendulum, [0, 100], y0, t_eval=t_eval)
-
-# Plot
-plt.figure(figsize=(10, 4))
-plt.plot(sol.t, sol.y[0])
-plt.title("Forced Damped Pendulum Motion")
-plt.xlabel("Time")
-plt.ylabel("Theta (rad)")
-plt.grid(True)
-plt.show()
-```
+* Energy harvesting systems (piezoelectric, electromagnetic)
+* Bridge and building dynamics (e.g., damping in skyscrapers)
+* Clock escapements
+* RLC circuits (analogous systems in electrical engineering)
 
 ---
 
-### 🔁 Phase Space and Poincaré Section
+## 📐 Implementation (Conceptual Steps)
 
-```python
-# Phase portrait
-plt.figure()
-plt.plot(sol.y[0], sol.y[1], lw=0.5)
-plt.title("Phase Space: θ vs ω")
-plt.xlabel("Theta")
-plt.ylabel("Angular Velocity")
-plt.grid(True)
-plt.show()
+1. **Model Setup**:
 
-# Poincaré section (sample once every drive period)
-T_drive = 2 * np.pi / omega_d
-indices = np.arange(int(T_drive / (t_eval[1]-t_eval[0])), len(t_eval), int(T_drive / (t_eval[1]-t_eval[0])))
+   * Define the equation of motion
+   * Choose parameter sets (damping, amplitude, frequency)
 
-plt.figure()
-plt.plot(sol.y[0][indices], sol.y[1][indices], 'o', markersize=1)
-plt.title("Poincaré Section")
-plt.xlabel("Theta")
-plt.ylabel("Angular Velocity")
-plt.grid(True)
-plt.show()
-```
+2. **Numerical Integration**:
+
+   * Use numerical methods (e.g., Runge-Kutta) for solving the differential equation
+
+3. **Phase Space Analysis**:
+
+   * Plot phase portraits ($\theta$ vs. $\dot{\theta}$)
+   * Create Poincaré sections (sample the system once every driving cycle)
+
+4. **Bifurcation Diagrams**:
+
+   * Show transitions in motion as a parameter (e.g., $A$ or $\omega$) is varied
 
 ---
 
-## 🧠 Discussion & Limitations
+## 📦 Deliverables Summary (Conceptual)
 
-### Limitations:
-
-* Small-angle approximation fails at large amplitudes.
-* Ignores frictional forces with different damping profiles.
-* Assumes perfectly periodic driving force.
-
-### Extensions:
-
-* Nonlinear damping: $\propto |\omega|\omega$
-* Stochastic or aperiodic driving force
-* Double pendulum for richer chaos
+* Theoretical derivation of the motion
+* Visuals: trajectories, phase diagrams, bifurcation plots
+* Discussion on regular vs. chaotic motion
+* Insights on physical meaning and real-world parallels
 
 ---
-
-
